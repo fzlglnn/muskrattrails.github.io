@@ -1,2 +1,2 @@
-# Muskrat_Trails
+# muskrattrails.com
 Muskrat Trails website
