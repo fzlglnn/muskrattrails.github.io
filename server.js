@@ -1,11 +1,21 @@
 // server.js
 const express = require('express');
 const path = require('path');
-const fs = require('fs').promises; // Using fs.promises for async/await
-const xml2js = require('xml2js');
+const helmet = require('helmet'); // Security headers middleware
+const fs = require('fs').promises; // File system promises API for async operations
+const xml2js = require('xml2js'); // Library for parsing XML (GPX is XML-based)
+const morgan = require('morgan'); // Logging middleware for HTTP requests
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
+const GPX_FILE_PATH = process.env.GPX_FILE_PATH || './Afternoon_Ride.gpx'; // Fallback to a default GPX file
+
+// Middleware for security headers
+app.use(helmet());
+
+// Logger for HTTP requests
+app.use(morgan('tiny'));
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,12 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 async function parseGPX(filePath) {
     try {
         // Step 1: Read the GPX file asynchronously
-        console.log('Reading file...');
         const gpxContent = await fs.readFile(filePath, 'utf8');
 
-        // Step 2: Parse the GPX content
+        // Step 2: Parse the GPX content into JavaScript objects
         const parser = new xml2js.Parser();
-        const result = await parser.parseStringPromise(gpxContent); // Using parseStringPromise for async parsing
+        const result = await parser.parseStringPromise(gpxContent);
 
         // Step 3: Extract the track points (trkpt) and build coordinates array
         const trackPoints = result.gpx.trk[0].trkseg[0].trkpt;
@@ -28,24 +37,40 @@ async function parseGPX(filePath) {
             parseFloat(point.$.lon)
         ]);
 
-        return coordinates;
+        return coordinates; // Return the coordinates array
     } catch (error) {
         console.error('Error parsing GPX file:', error);
-        throw error; // Propagate the error to handle it in the endpoint
+        throw new Error('Failed to parse GPX file'); // Create a descriptive error message
     }
 }
 
 // Endpoint to serve parsed GPX data as JSON
-app.get('/get-coordinates', async (req, res) => {
+app.get('/get-coordinates', async (req, res, next) => {
     try {
-        const coordinates = await parseGPX('./Afternoon_Ride.gpx'); // Provide the path to your GPX file
-        res.json(coordinates); // Send the coordinates as JSON response
+        const coordinates = await parseGPX(GPX_FILE_PATH); // Use environment variable or default GPX file
+        res.json(coordinates); // Send the coordinates as a JSON response
     } catch (error) {
-        res.status(500).send('Error reading or parsing GPX file');
+        next(error); // Pass error to the centralized error handler
     }
 });
 
+// Centralized error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack); // Log the error stack for debugging
+    res.status(500).json({ error: err.message || 'Internal Server Error' }); // Send error details as JSON
+});
+
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, HOST, (err) => {
+    if (err) {
+        console.error(`Error starting server: ${err}`);
+        return;
+    }
+
+    // Production environment doesn't require logging localhost
+    if (process.env.NODE_ENV === 'production') {
+        console.log(`Server running on port ${PORT}`);
+    } else {
+        console.log(`Server running at http://${HOST}:${PORT}`);
+    }
 });
