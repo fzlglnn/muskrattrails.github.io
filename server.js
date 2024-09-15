@@ -1,76 +1,104 @@
 // server.js
 const express = require('express');
 const path = require('path');
-const helmet = require('helmet'); // Security headers middleware
-const fs = require('fs').promises; // File system promises API for async operations
-const xml2js = require('xml2js'); // Library for parsing XML (GPX is XML-based)
-const morgan = require('morgan'); // Logging middleware for HTTP requests
+const helmet = require('helmet'); // Security headers
+const fs = require('fs').promises;
+const xml2js = require('xml2js');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit'); // Optional: Rate limiting middleware
+const cors = require('cors'); // CORS (if needed)
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || 'localhost';
-const GPX_FILE_PATH = process.env.GPX_FILE_PATH || './Afternoon_Ride.gpx'; // Fallback to a default GPX file
+const GPX_FILE_PATH = process.env.GPX_FILE_PATH || './Afternoon_Ride.gpx';
 
-// Middleware for security headers
+// Middleware for security headers (CSP, etc.)
 app.use(helmet());
 
+// Disable 'x-powered-by' header
+app.disable('x-powered-by');
+
 // Logger for HTTP requests
-app.use(morgan('tiny'));
+app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'tiny'));
+
+// Limit request body size to prevent large payloads
+app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ limit: '10kb', extended: true }));
+
+// Enforce HTTPS in production
+if (process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.headers['x-forwarded-proto'] !== 'https') {
+            return res.redirect(`https://${req.headers.host}${req.url}`);
+        }
+        next();
+    });
+}
+
+// Optional: Rate limiter for overall protection
+const generalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per window
+    message: 'Too many requests, please try again later.',
+});
+app.use(generalLimiter); // Apply rate limiting globally
+
+// CORS configuration (optional, only if you're serving assets across domains)
+app.use(cors({
+    origin: 'https://yourdomain.com', // Specify allowed origins
+    methods: ['GET'],
+}));
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Cache for parsed GPX data
+let cachedCoordinates = null;
+
 // Utility function to parse GPX file and extract coordinates
 async function parseGPX(filePath) {
     try {
-        // Step 1: Read the GPX file asynchronously
-        const gpxContent = await fs.readFile(filePath, 'utf8');
+        if (cachedCoordinates) return cachedCoordinates; // Return cached data if available
 
-        // Step 2: Parse the GPX content into JavaScript objects
+        const gpxContent = await fs.readFile(filePath, 'utf8');
         const parser = new xml2js.Parser();
         const result = await parser.parseStringPromise(gpxContent);
 
-        // Step 3: Extract the track points (trkpt) and build coordinates array
         const trackPoints = result.gpx.trk[0].trkseg[0].trkpt;
-        const coordinates = trackPoints.map(point => [
+        cachedCoordinates = trackPoints.map(point => [
             parseFloat(point.$.lat),
             parseFloat(point.$.lon)
         ]);
 
-        return coordinates; // Return the coordinates array
+        return cachedCoordinates;
     } catch (error) {
         console.error('Error parsing GPX file:', error);
-        throw new Error('Failed to parse GPX file'); // Create a descriptive error message
+        throw new Error('Failed to parse GPX file');
     }
 }
 
 // Endpoint to serve parsed GPX data as JSON
 app.get('/get-coordinates', async (req, res, next) => {
     try {
-        const coordinates = await parseGPX(GPX_FILE_PATH); // Use environment variable or default GPX file
-        res.json(coordinates); // Send the coordinates as a JSON response
+        const coordinates = await parseGPX(GPX_FILE_PATH);
+        res.json(coordinates);
     } catch (error) {
-        next(error); // Pass error to the centralized error handler
+        next(error); // Pass error to centralized error handler
     }
 });
 
 // Centralized error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack); // Log the error stack for debugging
-    res.status(500).json({ error: err.message || 'Internal Server Error' }); // Send error details as JSON
+    console.error(err.stack);
+    res.status(500).json({ error: err.message || 'Internal Server Error' });
 });
 
-// Start the server
-app.listen(PORT, HOST, (err) => {
+// Start the server with error handling
+app.listen(PORT, (err) => {
     if (err) {
-        console.error(`Error starting server: ${err}`);
-        return;
-    }
-
-    // Production environment doesn't require logging localhost
-    if (process.env.NODE_ENV === 'production') {
-        console.log(`Server running on port ${PORT}`);
+        console.error('Error starting server:', err);
+        process.exit(1); // Exit if the server fails to start
     } else {
-        console.log(`Server running at http://${HOST}:${PORT}`);
+        console.log(`Server running on port ${PORT}`);
     }
 });
