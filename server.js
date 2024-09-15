@@ -44,10 +44,7 @@ const generalLimiter = rateLimit({
 app.use(generalLimiter); // Apply rate limiting globally
 
 // CORS configuration (optional, only if you're serving assets across domains)
-app.use(cors({
-    origin: 'https://yourdomain.com', // Specify allowed origins
-    methods: ['GET'],
-}));
+app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
