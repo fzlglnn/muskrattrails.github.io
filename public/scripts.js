@@ -43,7 +43,7 @@ const renderRouteOnMap = (map, coordinates) => {
     if (!coordinates) return; // If no valid coordinates are passed, do nothing
 
     // Create a polyline for the route using the fetched coordinates
-    const polyline = L.polyline(coordinates, { color: 'black' }).addTo(map);
+    const polyline = L.polyline(coordinates, { color: 'blue' }).addTo(map);
 
     // Adjust the map view to fit the polyline
     map.fitBounds(polyline.getBounds());
