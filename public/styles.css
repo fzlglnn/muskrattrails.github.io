@@ -1,18 +1,18 @@
-
-
+/* Header styles */
 header {
     top: 0;
     left: 0;
     align-items: center;
     background-color: rgba(181, 155, 124);
     color: white;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     position: fixed;
     width: 100%;
     z-index: 1000;
 }
 
+/* Body styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -20,14 +20,27 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: 60px; /* Push main content below the fixed header */
+    padding-bottom: 60px; /* Push main content above the fixed footer */
 }
-
+#ramble-body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #add19e; /* Replace with your desired color code */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 200px; /* Push main content below the fixed header */
+    padding-bottom: 60px; /* Push main content above the fixed footer */
+}
+/* Image in h1 tag */
 h1 img {
     height: 60px;
     width: auto;
     vertical-align: middle;
 }
 
+/* Footer styles */
 footer {
     background-color: rgba(161, 135, 104);
     color: white;
@@ -40,42 +53,121 @@ footer {
     z-index: 1000;
 }
 
-main {
+/* Main content area */
+#main {
     flex: 1; /* Allow main to grow and fill the remaining space */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 50px;
     align-items: center;
     padding: 20px;
-    /*background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
     border-radius: 8px;
-    margin: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Optional: set a maximum width for the content area */
+}
+#ramble-main {
+    display: flex;
+    flex-direction: column; /* Stack the map and text box vertically */
+    justify-content: center; /* Align items at the top */
+    gap: 20px; /* Space between the map and text box */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content */
 }
 
-#map-section {
-    width: 100%;
-    max-width: 1200px;
+/* Column 2 for home page */
+#home-col-2 {
+    flex: 1; /* Allow text section to take up part of the space */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 1200px; /* Set a maximum width for larger screens */
-    margin: 0 auto;    
 }
 
+#ramble-col-2 {
+    width: 100%; /* Ensure the text box takes the full width of the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* Home text box */
+#home-text-box {
+    font-family: 'Lora', serif;
+    font-size: 25px; /* Adjust the font size */
+    font-style:oblique;
+    font-weight: 500;
+    color: darkslategrey;
+    background-color: white; /* Set the background to white */
+    padding: 20px; /* Padding inside the text box */
+    border: none; /* Remove the border */
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+}
+#ramble-text-box {
+    font-family: 'Lora', serif;
+    font-size: 25px; /* Adjust the font size */
+    font-style:oblique;
+    font-weight: 500;
+    color: darkslategrey;    
+    background-color: white; /* Set the background to white */
+    padding: 20px; /* Padding inside the text box */
+    border: none; /* Remove the border */
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Map section */
+#map-section {
+    flex: 1; /* Allow the map to take up one part of the space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+/* Map styles */
 #map {
     width: 100%;
-    height: calc(100vh - 350px);
-    border: 20px solid rgba(125, 185, 115, 1); /* Optional: Add a border around the map */
-    border-radius: 15px;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
-}
-#ramble_map{
-    width: 100%;
-    height: calc(100vh - 350px);
-    /*border: 20px solid rgba(125, 185, 115, 1); */ 
-    
+    height: calc(100vh - 350px);     
+    z-index: 999;
 }
 
+#ramble-map-section{
+    flex: 2; /* Allow the map section to take up the space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto; /* Center the content */
+    max-width: 1200px; /* Match the maximum width of the original map */
+    overflow: hidden;
+}
+
+/* Smaller ramble map */
+#ramble-map {
+    width: 100%; /* Fill the container */
+    height: auto; /* Same height calculation as the original map */
+    min-height: 100vh;
+    z-index: 999;     
+    overflow: visible; /* Ensure content inside stays within the bounds */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#ramble-map img {
+    width: 100%; /* Ensure the image fills the width of the container */
+    height: 100%; /* Ensure the image fills the height of the container */
+    object-fit: contain; /* Make sure the image covers the container without distorting */
+}
+
+/* Navigation link styles */
 .nav-link {
     margin: 0 10px;
     color: white;
@@ -90,9 +182,30 @@ main {
     color: #fff;
     border-radius: 15px;
 }
+
 .nav-link.active {
     background-color: rgba(161, 135, 104, 1);
-    /*color: #fff;*/
     border-radius: 15px;
 }
 
+/* Responsive: Stack columns on smaller screens */
+@media (max-width: 768px) {
+    #main {
+        flex-direction: column; /* Stack the map and text box vertically */
+        gap: 20px;
+    }
+
+    #map-section, #home-col-2 {
+        width: 100%; /* Make both sections take full width on small screens */
+        height: auto; /* Adjust height based on content */
+    }
+
+    #map {
+        height: 300px; /* Adjust the map height for smaller screens */
+    }
+
+    #home-text-box {
+        height: auto; /* Adjust the text box height based on content */
+        margin-bottom: 20px; /* Add spacing between stacked elements */
+    }
+}
