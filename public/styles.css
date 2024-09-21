@@ -1,10 +1,9 @@
 /* Header styles */
-header {
+#header {
     top: 0;
     left: 0;
     align-items: center;
     background-color: rgba(181, 155, 124);
-    color: white;
     padding: 20px;
     text-align: center;
     position: fixed;
@@ -15,42 +14,32 @@ header {
 /* Body styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #add19e; /* Replace with your desired color code */
+    margin-top: 70px;
+    font-family: Arial, sans-serif;    
     display: flex;
     flex-direction: column;
+    background-color: #add19e !important;
     min-height: 100vh;
-    padding-top: 60px; /* Push main content below the fixed header */
-    padding-bottom: 60px; /* Push main content above the fixed footer */
+    box-sizing: border-box;
+    padding-top: 50px; /* Push main content below the fixed header */    
 }
 #ramble-body{
-    margin: 0;
+    margin: 0;    
     font-family: Arial, sans-serif;
     background-color: #add19e; /* Replace with your desired color code */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 200px; /* Push main content below the fixed header */
-    padding-bottom: 60px; /* Push main content above the fixed footer */
+    padding-top: 50px; /* Push main content below the fixed header */
+    
 }
 /* Image in h1 tag */
-h1 img {
-    height: 60px;
+#nav-brand-logo{
+    height: auto;
+    max-height: 60px; /* Adjust max height for larger screens */
     width: auto;
-    vertical-align: middle;
-}
-
-/* Footer styles */
-footer {
-    background-color: rgba(161, 135, 104);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 50px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
+    max-width: 500px; /* Adjust max width for larger screens */
+    transition: all 0.3s ease; /* Smooth resizing */
 }
 
 /* Main content area */
@@ -58,12 +47,14 @@ footer {
     flex: 1; /* Allow main to grow and fill the remaining space */
     display: flex;
     justify-content: space-between;
+    background-color: #add19e; 
+    flex-direction: column;
     gap: 50px;
     align-items: center;
     padding: 20px;
     border-radius: 8px;
     margin: 0 auto;
-    max-width: 1200px; /* Optional: set a maximum width for the content area */
+    
 }
 #ramble-main {
     display: flex;
@@ -71,6 +62,7 @@ footer {
     justify-content: center; /* Align items at the top */
     gap: 20px; /* Space between the map and text box */
     padding: 20px;
+    padding-top: 90px;
     max-width: 1200px;
     margin: 0 auto; /* Center the content */
 }
@@ -98,7 +90,7 @@ footer {
 #home-text-box {
     font-family: 'Lora', serif;
     font-size: 25px; /* Adjust the font size */
-    font-style:oblique;
+    font-style:normal;
     font-weight: 500;
     color: darkslategrey;
     background-color: white; /* Set the background to white */
@@ -109,7 +101,7 @@ footer {
 #ramble-text-box {
     font-family: 'Lora', serif;
     font-size: 25px; /* Adjust the font size */
-    font-style:oblique;
+    font-style:normal;
     font-weight: 500;
     color: darkslategrey;    
     background-color: white; /* Set the background to white */
@@ -125,6 +117,7 @@ footer {
 #map-section {
     flex: 1; /* Allow the map to take up one part of the space */
     display: flex;
+    margin-top: 70px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -168,28 +161,48 @@ footer {
 }
 
 /* Navigation link styles */
-.nav-link {
+.navbar {
+    background-color:  rgba(181, 155, 124); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.nav-link{    
     margin: 0 10px;
-    color: white;
-    text-decoration: none;
+    width: auto;
+    color: white !important;
+    text-align: center;
+    background-color:  rgba(181, 155, 124);
+    text-decoration: none;    
+    display: inline-block;
     padding: 5px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 15px;
 }
-
+.nav-item{
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
 .nav-link:hover {
-    background-color: rgba(161, 135, 104, 1);
+    background-color: rgba(161, 135, 104);
     color: #fff;
-    border-radius: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+   /* border-radius: 15px;   
+    padding: 10px, 15px;*/
 }
 
-.nav-link.active {
-    background-color: rgba(161, 135, 104, 1);
+.navbar-nav .nav-link.active {    
+    text-align: center; 
     border-radius: 15px;
+    background-color: rgba(161, 135, 104, 1);
+    display: inline-block;
+    padding: 10px 15px;
 }
 
 /* Responsive: Stack columns on smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     #main {
         flex-direction: column; /* Stack the map and text box vertically */
         gap: 20px;
@@ -208,4 +221,37 @@ footer {
         height: auto; /* Adjust the text box height based on content */
         margin-bottom: 20px; /* Add spacing between stacked elements */
     }
+
+    .navbar-brand {
+        flex-grow: 1; /* Let the logo grow to fill available space */
+        text-align: center; /* Center the logo if necessary */
+    }
+
+    #nav-brand-logo {
+        max-width: 150px; /* Smaller max width for small screens */
+        max-height: 40px; /* Smaller max height for small screens */
+        margin-left: 10px; /* Add some margin to space out from the burger menu */
+    }
+
+    /* Optional: Adjust burger icon spacing */
+    .navbar-toggler {
+        margin-right: 10px;
+    }
+
+    .navbar-collapse .nav-item {
+        display: inline-block; /* Prevent the nav-item from taking up the full width */
+        width: auto; /* Ensure it doesn't expand */
+    }
+
+    .navbar-collapse .nav-link {
+        display: inline-block; /* Make sure nav-link only takes necessary width */
+        padding: 5px 10px; /* Adjust padding to reduce clickable area */
+        width: auto; /* Prevent it from taking full width */
+    }
+    .navbar-brand{
+        display: inline-block; 
+        padding: 5px 10px;
+        width: auto; 
+    }
+
 }
