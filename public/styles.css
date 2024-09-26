@@ -68,12 +68,14 @@ body {
 }
 
 /* Column 2 for home page */
-#home-col-2 {
+#home-col-1 {
     flex: 1; /* Allow text section to take up part of the space */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 0px;
 }
 
 #ramble-col-2 {
@@ -117,7 +119,7 @@ body {
 #map-section {
     flex: 1; /* Allow the map to take up one part of the space */
     display: flex;
-    margin-top: 70px;
+    margin-top: 0px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -223,11 +225,13 @@ body {
     font-style:normal;
     font-weight: 500;
     color: darkslategrey;    
+    text-align: left;
     background-color: white; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
     margin: 0 auto;
+    margin-top: 30px;
     margin-bottom: 20px; /* Adds space between the paragraph and video */
     width: 100%;
     max-width: 1000px;
