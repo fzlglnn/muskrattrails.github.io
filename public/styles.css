@@ -4,7 +4,7 @@
     left: 0;
     align-items: center;
     background-color: rgba(181, 155, 124);
-    padding: 20px;
+    padding: 20px;   
     text-align: center;
     position: fixed;
     width: 100%;
@@ -91,28 +91,28 @@ body {
 /* Home text box */
 #home-text-box {
     font-family: 'Lora', serif;
-    font-size: 25px; /* Adjust the font size */
+    font-size: 18px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);
-    background-color: white; /* Set the background to white */
+    background-color: #edecdd; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    /*box-shadow: 0 8px 8px #61af5e; */
 }
 #ramble-text-box {
     font-family: 'Lora', serif;
-    font-size: 25px; /* Adjust the font size */
+    font-size: 18px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);    
-    background-color: white; /* Set the background to white */
+    background-color: #edecdd; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    /*box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); Optional: Add box shadow for depth */
     margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 /* Map section */
@@ -222,15 +222,15 @@ body {
 
 #about-blerb{
     font-family: 'Lora', serif;
-    font-size: 25px; /* Adjust the font size */
+    font-size: 18px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);    
     text-align: left;
-    background-color: white; /* Set the background to white */
+    background-color: #edecdd; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    /*box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
     margin: 0 auto;
     margin-top: 30px;
     margin-bottom: 20px; /* Adds space between the paragraph and video */
@@ -272,7 +272,7 @@ body {
     }
 
     #nav-brand-logo {
-        max-width: 150px; /* Smaller max width for small screens */
+        max-width: 350px; /* Smaller max width for small screens */
         max-height: 40px; /* Smaller max height for small screens */
         margin-left: 10px; /* Add some margin to space out from the burger menu */
     }
