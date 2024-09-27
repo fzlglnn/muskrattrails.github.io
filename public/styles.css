@@ -74,7 +74,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 0px;
 }
 
@@ -83,15 +83,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;    
-    flex-direction: column;
-    padding: 20px;
+    flex-direction: column;    
     margin: 0 auto;
 }
 
 /* Home text box */
 #home-text-box {
     font-family: 'Lora', serif;
-    font-size: 18px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);
@@ -102,7 +101,7 @@ body {
 }
 #ramble-text-box {
     font-family: 'Lora', serif;
-    font-size: 18px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);    
@@ -128,7 +127,7 @@ body {
 /* Map styles */
 #map {
     width: 100%;
-    height: calc(100vh - 350px);     
+    height: 75vh;     
     z-index: 999;
 }
 
@@ -182,26 +181,23 @@ body {
 
 .nav-link{    
     margin: 0 10px;
-    width: auto;
+    /*width: auto;*/
     color: white !important;
     text-align: center;
     background-color:  rgba(181, 155, 124);
-    font-family: 'Lora', serif;      
-    display: inline-block;
-    padding: 5px 10px;
+    font-family: 'Lora', serif;  
+    padding: 5px 5px !important;    
+    display: inline-block !important;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    
 }
 .nav-item{
     display: inline-block;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    text-align: center;   
 }
 .nav-link:hover {
     background-color: rgba(161, 135, 104);
-    color: #fff;
-    transition: background-color 0.3s ease, color 0.3s ease;
-   /* border-radius: 15px;   
-    padding: 10px, 15px;*/
+    color: #fff; 
 }
 
 .navbar-nav .nav-link.active {    
@@ -217,20 +213,19 @@ body {
     flex-direction: column; /* Stacks the paragraph and iframe vertically */
     align-items: center; /* Center content horizontally */
     text-align: center; /* Center text in paragraph */
-    padding: 20px;
+    padding-top: 60px;
 }
 
 #about-blerb{
     font-family: 'Lora', serif;
-    font-size: 18px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
     color: rgb(0, 0, 0);    
     text-align: left;
     background-color: #edecdd; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
-    border: none; /* Remove the border */
-    /*box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    border: none; /* Remove the border */   
     margin: 0 auto;
     margin-top: 30px;
     margin-bottom: 20px; /* Adds space between the paragraph and video */
@@ -246,7 +241,7 @@ body {
 
 
 /* Responsive: Stack columns on smaller screens */
-@media (max-width: 1080px) {
+@media (max-width: 500px) {
     #main {
         flex-direction: column; /* Stack the map and text box vertically */
         gap: 20px;
@@ -267,19 +262,21 @@ body {
     }
 
     .navbar-brand {
-        flex-grow: 1; /* Let the logo grow to fill available space */
+        flex-grow: 0; /* Let the logo grow to fill available space */
         text-align: center; /* Center the logo if necessary */
     }
 
     #nav-brand-logo {
-        max-width: 350px; /* Smaller max width for small screens */
+        max-width: 250px; /* Smaller max width for small screens */
         max-height: 40px; /* Smaller max height for small screens */
-        margin-left: 10px; /* Add some margin to space out from the burger menu */
+       /*margin-left: 10px; /* Add some margin to space out from the burger menu */
     }
 
     /* Optional: Adjust burger icon spacing */
     .navbar-toggler {
-        margin-right: 10px;
+        order: -1;
+        flex-grow: 0;
+        margin-left: -10px;
     }
 
     .navbar-collapse .nav-item {
@@ -293,9 +290,11 @@ body {
         width: auto; /* Prevent it from taking full width */
     }
     .navbar-brand{
+        order: 0;
+        flex-grow: 1;
         display: inline-block; 
         padding: 5px 10px;
-        width: auto; 
+        max-width: 70%; 
     }
 
 }
