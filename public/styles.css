@@ -94,7 +94,7 @@ body {
     font-size: 25px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
-    color: darkslategrey;
+    color: rgb(0, 0, 0);
     background-color: white; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
@@ -105,7 +105,7 @@ body {
     font-size: 25px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
-    color: darkslategrey;    
+    color: rgb(0, 0, 0);    
     background-color: white; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
     border: none; /* Remove the border */
@@ -170,6 +170,7 @@ body {
     aspect-ratio: 16/9;     /* Maintain 16:9 aspect ratio */
 }
 
+
 /* Navigation link styles */
 .navbar {
     background-color:  rgba(181, 155, 124); 
@@ -185,7 +186,7 @@ body {
     color: white !important;
     text-align: center;
     background-color:  rgba(181, 155, 124);
-    text-decoration: none;    
+    font-family: 'Lora', serif;      
     display: inline-block;
     padding: 5px 10px;
 }
@@ -224,7 +225,7 @@ body {
     font-size: 25px; /* Adjust the font size */
     font-style:normal;
     font-weight: 500;
-    color: darkslategrey;    
+    color: rgb(0, 0, 0);    
     text-align: left;
     background-color: white; /* Set the background to white */
     padding: 20px; /* Padding inside the text box */
