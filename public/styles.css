@@ -131,6 +131,10 @@ body {
     z-index: 999;
 }
 
+.leaflet-control-attribution {
+    font-size: 7px; /* Change the font size of OpenStreetMap logo to make the text smaller/larger */
+}
+
 #ramble-map-section{
     flex: 2; /* Allow the map section to take up the space */
     display: flex;
