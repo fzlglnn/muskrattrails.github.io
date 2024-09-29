@@ -211,14 +211,6 @@ body {
     padding: 10px 15px;
 }
 
-#about-container {
-    display: flex;
-    flex-direction: column; /* Stacks the paragraph and iframe vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text in paragraph */
-    padding-top: 60px;
-}
-
 #about-blerb{
     font-family: 'Lora', serif;
     font-size: 20px; /* Adjust the font size */
@@ -234,6 +226,13 @@ body {
     margin-bottom: 20px; /* Adds space between the paragraph and video */
     width: 100%;
     max-width: 1000px;
+}
+#about-YT-container{
+    position: relative;
+    width: 100%; /* Full width of the container */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+    height: 0;
+    overflow: hidden;
 }
 #about-YT-vid {
     width: 100%; /* Ensures the video is responsive */
