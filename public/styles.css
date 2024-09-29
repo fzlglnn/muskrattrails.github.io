@@ -105,7 +105,7 @@ body {
     font-weight: 500;
     color: rgb(0, 0, 0);    
     background-color: #edecdd; /* Set the background to white */
-    padding: 20px; /* Padding inside the text box */
+    padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     /*box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); Optional: Add box shadow for depth */
     margin: 0 auto;
