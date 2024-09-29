@@ -3,8 +3,7 @@
     top: 0;
     left: 0;
     align-items: center;
-    background-color: rgba(181, 155, 124);
-    padding: 20px;   
+    background-color: rgba(181, 155, 124);  
     text-align: center;
     position: fixed;
     width: 100%;
@@ -95,7 +94,7 @@ body {
     font-weight: 500;
     color: rgb(0, 0, 0);
     background-color: #edecdd; /* Set the background to white */
-    padding: 20px; /* Padding inside the text box */
+    padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     /*box-shadow: 0 8px 8px #61af5e; */
 }
@@ -228,7 +227,7 @@ body {
     color: rgb(0, 0, 0);    
     text-align: left;
     background-color: #edecdd; /* Set the background to white */
-    padding: 20px; /* Padding inside the text box */
+    padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */   
     margin: 0 auto;
     margin-top: 30px;
