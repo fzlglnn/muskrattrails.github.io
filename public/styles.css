@@ -164,6 +164,35 @@ body {
     object-fit: contain; /* Make sure the image covers the container without distorting */
     padding-bottom: 20px;
 }
+#ride-details-section{
+    flex: 2; /* Allow the map section to take up the space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto; /* Center the content */
+    max-width: 1200px; /* Match the maximum width of the original map */
+    overflow: hidden;
+}
+#ride-details-graphic{
+    width: 100%; /* Fill the container */
+    height: auto; /* Same height calculation as the original map */
+    min-height: 100vh;
+    z-index: 999;     
+    overflow: visible; /* Ensure content inside stays within the bounds */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#ride-details-graphic img{
+    width: 100%; /* Ensure the image fills the width of the container */
+    height: auto; /* Ensure the image fills the height of the container */
+    object-fit: contain; /* Make sure the image covers the container without distorting */
+    padding-bottom: 20px;
+}
+
 #ramble-vid {
     padding-top: 20px;
     width: 100%;            /* Make video responsive */
@@ -211,6 +240,13 @@ body {
     padding: 10px 15px;
 }
 
+#about-txt-container{
+    position: relative;
+    width: 100%; /* Full width of the container */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+    height: 0;
+    overflow: hidden;    
+}
 #about-blerb{
     font-family: 'Lora', serif;
     font-size: 20px; /* Adjust the font size */
