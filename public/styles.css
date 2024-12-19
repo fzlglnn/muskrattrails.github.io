@@ -9,8 +9,6 @@
     width: 100%;
     z-index: 1000;
 }
-
-/* Body styles */
 body {
     margin: 0;
     margin-top: 70px;
@@ -42,17 +40,17 @@ body {
 }
 
 /* Main content area */
-#main {
-    flex: 1; /* Allow main to grow and fill the remaining space */
+#main {    
     display: flex;
     justify-content: center; /*space-between;*/
     background-color: #add19e; 
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
     padding: 20px;
     border-radius: 8px;
     margin: 0 auto;
+    margin-bottom: 0 auto;
     
 }
 #ramble-main {
@@ -95,8 +93,7 @@ body {
     color: rgb(0, 0, 0);
     background-color: #edecdd; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
-    border: none; /* Remove the border */
-    /*box-shadow: 0 8px 8px #61af5e; */
+    border: none; /* Remove the border */   
 }
 #ramble-text-box {
     font-family: 'Lora', serif;
@@ -107,7 +104,6 @@ body {
     background-color: #edecdd; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
-    /*box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); Optional: Add box shadow for depth */
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
@@ -164,6 +160,7 @@ body {
     object-fit: contain; /* Make sure the image covers the container without distorting */
     padding-bottom: 20px;
 }
+
 #ride-details-section{
     flex: 2; /* Allow the map section to take up the space */
     display: flex;
@@ -175,6 +172,7 @@ body {
     max-width: 1200px; /* Match the maximum width of the original map */
     overflow: hidden;
 }
+
 #ride-details-graphic{
     width: 100%; /* Fill the container */
     height: auto; /* Same height calculation as the original map */
@@ -186,6 +184,7 @@ body {
     align-items: center;
     position: relative;
 }
+
 #ride-details-graphic img{
     width: 100%; /* Ensure the image fills the width of the container */
     height: auto; /* Ensure the image fills the height of the container */
@@ -200,7 +199,6 @@ body {
     height: auto;
     aspect-ratio: 16/9;     /* Maintain 16:9 aspect ratio */
 }
-
 
 /* Navigation link styles */
 .navbar {
@@ -220,8 +218,7 @@ body {
     font-family: 'Lora', serif;  
     padding: 5px 5px !important;    
     display: inline-block !important;
-    transition: background-color 0.3s ease, padding 0.3s ease;
-    
+    transition: background-color 0.3s ease, padding 0.3s ease;    
 }
 .nav-item{
     display: inline-block;
@@ -242,11 +239,12 @@ body {
 
 #about-txt-container{
     position: relative;
-    width: 100%; /* Full width of the container */
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
-    height: 0;
-    overflow: hidden;    
+    width: 100%; /* Full width of the container */    
+    height: auto;
+    margin-top: 0px;   
+    overflow: visible;    
 }
+
 #about-blerb{
     font-family: 'Lora', serif;
     font-size: 20px; /* Adjust the font size */
@@ -254,29 +252,29 @@ body {
     font-weight: 500;
     color: rgb(0, 0, 0);    
     text-align: left;
-    background-color: #edecdd; /* Set the background to white */
+    background-color: #edecdd; 
     padding: 10px; /* Padding inside the text box */
-    border: none; /* Remove the border */   
+    border: none;
     margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 20px; /* Adds space between the paragraph and video */
+    margin-top: 40px;    
     width: 100%;
     max-width: 1000px;
 }
+
 #about-YT-container{
     position: relative;
     width: 100%; /* Full width of the container */
     padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
-    height: 0;
+    height: auto;
     overflow: hidden;
 }
+
 #about-YT-vid {
     width: 100%; /* Ensures the video is responsive */
     max-width: 1000px; /* Keeps the video at its original width on larger screens */
     height: auto;
     aspect-ratio: 16/9; /* Maintains a 16:9 aspect ratio */
 }
-
 
 /* Responsive: Stack columns on smaller screens */
 @media (max-width: 500px) {
