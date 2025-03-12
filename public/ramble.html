@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muskrat Trails</title>
+    <title>Muskrat Trails Ramble</title>
     <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="zine.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -17,59 +18,62 @@
 
 </head>
 <body>
-    <header id="header">   
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-                <div class="container-fluid">
-                    <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!--LOGO-->
-                    <a href="/" class="navbar-brand order-2" style="text-decoration: none;">
-                        <img id="nav-brand-logo" src="./images/website_logo.png" alt="My Website Logo">
-                    </a>                  
-                  <div class="collapse navbar-collapse navbar-collapse order-3" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">                  
-                      <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./ramble.html">Ramble</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-        </div>           
-    </header>
-    <main id="ramble-main">        
-        <div id="ramble-col-2">
-            <div id ="ramble-text-box">
-              The Muskrat Ramble is a multi-day trail adventure beginning in downtown Columbia. 
-              It follows the MKT and Katy Trails along the scenic Missouri River, leading to our campsite in Hartsburg.          
-            </div>                    
-        </div>
-        <div id="ride-details-section">
-            <div id ="ride-details-graphic">
-                <img src="./images/THERIDE.jpg" alt="ride deatails graphic">
+  <header id="header">   
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--LOGO-->
+                <a href="/" class="navbar-brand order-2" style="text-decoration: none;">
+                    <img id="nav-brand-logo" src="./images/website_logo.png" alt="My Website Logo">
+                </a>                  
+              <div class="collapse navbar-collapse navbar-collapse order-3" id="navbarNav">
+                <ul class="navbar-nav ms-auto">                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./ramble.html">Ramble</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./zine.html">Zine</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
-        <div id="ramble-map-section">
-            <div id="ramble-map" >
-                <img src="./images/MUSKRAT RAMBLEJUNE2.png" alt="Ramble Map">
-            </div> 
-            <iframe width="1200" height="600" src="https://www.youtube.com/embed/YNq-mKiLfPY?si=S1X_oedeNyiD7xAA"
-             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-             gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>        
-        </div>
-    </main>    
-     <!-- Bootstrap JS and dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Link to the external window_events.js file -->
-<script src="window_events.js"></script>
+          </nav>
+        </div>            
+      </header>   
+      <main id="ramble-main">        
+          <div id="ramble-col-2">
+              <div id ="ramble-text-box">
+                The Muskrat Ramble is a multi-day trail adventure beginning in downtown Columbia. 
+                It follows the MKT and Katy Trails along the scenic Missouri River, leading to our campsite in Hartsburg.          
+              </div>                    
+          </div>
+          <!--<div id="ride-details-section">
+              <div id ="ride-details-graphic">
+                  <img src="./images/THERIDE.jpg" alt="ride deatails graphic">
+              </div>
+          </div> -->
+          <div id="ramble-map-section">
+              <div id="ramble-map" >
+                  <img src="./images/MUSKRAT RAMBLEJUNE2.png" alt="Ramble Map">
+              </div> 
+              <iframe id="YT-container" src="https://www.youtube.com/embed/YNq-mKiLfPY?si=S1X_oedeNyiD7xAA"
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>        
+          </div>
+      </main>    
+          <!-- Bootstrap JS and dependencies -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Link to the external window_events.js file -->
+      <script src="window_events.js"></script>
 </body>
 </html>

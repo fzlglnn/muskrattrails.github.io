@@ -1,0 +1,186 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muskrat Trails Zine</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="zine.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+  <header id="header">   
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--LOGO-->
+                <a href="/" class="navbar-brand order-2" style="text-decoration: none;">
+                    <img id="nav-brand-logo" src="./images/website_logo.png" alt="My Website Logo">
+                </a>                  
+              <div class="collapse navbar-collapse navbar-collapse order-3" id="navbarNav">
+                <ul class="navbar-nav ms-auto">                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./ramble.html">Ramble</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./zine.html">Zine</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </div>            
+</header>
+<div class="content wrapper">
+  <div class="title-price-container">
+    <h1 class="title">MRT 01: Ramble 2024</h1>
+    <h2 class="price">$10</h2>
+  </div>
+  <div class="slideshow container wrapper">
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fades">
+        <div class="numbertext">1 / 4</div>
+        <img src="./images/zene1.jpeg" style="width:100%; height: 25%">
+        
+    </div>
+
+    <div class="mySlides fades">
+        <div class="numbertext">2 / 4</div>
+        <img src="./images/zene2.jpeg" style="width:100%; height: 25%">    
+    </div>
+
+    <div class="mySlides fades">
+        <div class="numbertext">3 / 4</div>
+        <img src="./images/zene3.jpeg" style="width:100%; height: 25%">    
+    </div>
+
+    <div class="mySlides fades">
+        <div class="numbertext">4 / 4</div>
+        <img src="./images/zene4.jpeg" style="width:100%; height: 25%">    
+    </div>
+  </div>
+</div> 
+</div>
+    <!--<br>-->
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>    
+    </div>
+<br>
+<div class="zine-details">
+  <div class="zine-description">
+    <p>This is Issue 01 of the Muskrat Ramble, a photo book documenting 
+      the people, places, and ambiance of the 2024 Ramble—moments that can
+      only be captured when a group of friends endeavors to adventure together 
+      and enjoys each other's company.
+    </p>
+    <p>
+      <strong>Book Details</strong>
+      <br>
+      &bull; 5.5" x 8.5"
+      <br>
+      &bull; 46 pages 
+      <br>
+      &bull; 4 Contributors
+      <br>
+      &bull; Limted-Edition of 25
+      <br>
+      &bull; Layout and design by Gabi Jacobs 
+      <br>
+      &bull; $10 for Columbia pickup $17 shipped with tracking
+    </p>
+    <p>
+      <strong>Contributing Photographers</strong>
+      <br>
+      Gabi Jacobs, Justin White, Danny Gawne, and Madi Ehler
+    </p>
+    <br>
+    <p>Find us on IG @muskrat_trails to stay in the loop about our next ride. 
+      DM us payment and delivery details.
+    </p>
+</div>
+</body>
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+
+      // Hide all slides
+      for (let i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+
+      // Remove active class from all dots
+      for (let i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+
+      // Show current slide
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+  }
+
+  // Function to go to the next slide
+  function nextSlide() {
+      showSlides(++slideIndex);
+  }
+
+  // Function to go to the previous slide
+  function prevSlide() {
+      showSlides(--slideIndex);
+  }
+
+  // Add click event to each slide to advance to the next slide
+  document.querySelectorAll(".mySlides").forEach(slide => {
+      slide.addEventListener("click", nextSlide);
+  });
+
+  // Swipe Detection for Mobile
+  let startX = 0;
+  let endX = 0;
+
+  document.querySelector(".slideshow-container").addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+  });
+
+  document.querySelector(".slideshow-container").addEventListener("touchend", (e) => {
+      endX = e.changedTouches[0].clientX;
+      if (startX > endX + 50) { // Swipe left → Next slide
+          nextSlide();
+      } else if (startX < endX - 50) { // Swipe right → Previous slide
+          prevSlide();
+      }
+  });
+</script>
+</html> 
+    

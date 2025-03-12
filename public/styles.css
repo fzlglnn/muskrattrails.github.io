@@ -55,13 +55,14 @@ body {
 }
 #ramble-main {
     display: flex;
-    flex-direction: column; /* Stack the map and text box vertically */
-    justify-content: center; /* Align items at the top */
-    gap: 20px; /* Space between the map and text box */
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    gap: 20px; 
     padding: 20px;
     padding-top: 90px;
-    max-width: 1200px;
-    margin: 0 auto; /* Center the content */
+    max-width: 500px;
+    margin: 0 auto; 
 }
 
 /* Column 2 for home page */
@@ -85,28 +86,23 @@ body {
 }
 
 /* Home text box */
-#home-text-box {
-    font-family: 'Lora', serif;
-    font-size: 20px; /* Adjust the font size */
-    font-style:normal;
-    font-weight: 500;
+#home-text-box {    
+    font-size: 20px; /* Adjust the font size */   
     color: rgb(0, 0, 0);
-    background-color: #edecdd; /* Set the background to white */
+    background-color: beige; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */   
+    margin-bottom: 20px;
 }
-#ramble-text-box {
-    font-family: 'Lora', serif;
-    font-size: 20px; /* Adjust the font size */
-    font-style:normal;
-    font-weight: 500;
+#ramble-text-box {   
+    font-size: 20px; /* Adjust the font size */   
     color: rgb(0, 0, 0);    
-    background-color: #edecdd; /* Set the background to white */
+    background-color: beige; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
+    /*margin: 0 auto;*/
+    max-width: 500px;
+    overflow: visible;
 }
 
 /* Map section */
@@ -131,28 +127,19 @@ body {
 }
 
 #ramble-map-section{
-    flex: 2; /* Allow the map section to take up the space */
+    flex: 1; /* Allow the map section to take up the space */
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin: 0 auto; /* Center the content */
-    max-width: 1200px; /* Match the maximum width of the original map */
-    overflow: hidden;
+    flex-direction: column;  
+    margin:auto;
 }
 
 /* Smaller ramble map */
-#ramble-map {
-    width: 100%; /* Fill the container */
-    height: auto; /* Same height calculation as the original map */
-    min-height: 100vh;
-    z-index: 999;     
-    overflow: visible; /* Ensure content inside stays within the bounds */
+#ramble-map {   
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    align-items: center;   
 }
 #ramble-map img {
     width: 100%; /* Ensure the image fills the width of the container */
@@ -166,11 +153,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: column;    
     margin: 0 auto; /* Center the content */
-    max-width: 1200px; /* Match the maximum width of the original map */
-    overflow: hidden;
+    max-width: 500px; /* Match the maximum width of the original map */
+    overflow: scroll;
 }
 
 #ride-details-graphic{
@@ -195,7 +181,7 @@ body {
 #ramble-vid {
     padding-top: 20px;
     width: 100%;            /* Make video responsive */
-    max-width: 1000px;       /* Limit the maximum width of the video */
+    max-width: 500px;       /* Limit the maximum width of the video */
     height: auto;
     aspect-ratio: 16/9;     /* Maintain 16:9 aspect ratio */
 }
@@ -245,14 +231,11 @@ body {
     overflow: visible;    
 }
 
-#about-blerb{
-    font-family: 'Lora', serif;
-    font-size: 20px; /* Adjust the font size */
-    font-style:normal;
-    font-weight: 500;
+#about-blerb{    
+    font-size: 20px; /* Adjust the font size */   
     color: rgb(0, 0, 0);    
     text-align: left;
-    background-color: #edecdd; 
+    background-color: beige; 
     padding: 10px; /* Padding inside the text box */
     border: none;
     margin: 0 auto;
@@ -261,7 +244,7 @@ body {
     max-width: 1000px;
 }
 
-#about-YT-container{
+#YT-container{
     position: relative;
     width: 100%; /* Full width of the container */
     padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
@@ -269,7 +252,7 @@ body {
     overflow: hidden;
 }
 
-#about-YT-vid {
+#YT-vid {
     width: 100%; /* Ensures the video is responsive */
     max-width: 1000px; /* Keeps the video at its original width on larger screens */
     height: auto;
@@ -278,9 +261,20 @@ body {
 
 /* Responsive: Stack columns on smaller screens */
 @media (max-width: 500px) {
-    #main {
+    #main{
         flex-direction: column; /* Stack the map and text box vertically */
         gap: 20px;
+    }
+
+    /*#ramble-main {
+        display: flex;
+        flex-direction: column; /* Stack the map and text box vertically 
+        justify-content: center; /* Align items at the top 
+        gap: 20px; /* Space between the map and text box */
+       /* padding: 20px;
+        padding-top: 90px;
+        max-width: auto;
+        margin: 0 auto; /* Center the content */
     }
 
     #map-section, #home-col-2 {
@@ -292,7 +286,7 @@ body {
         height: 300px; /* Adjust the map height for smaller screens */
     }
 
-    #home-text-box {
+    #home-text-box{
         height: auto; /* Adjust the text box height based on content */
         margin-bottom: 20px; /* Add spacing between stacked elements */
     }
@@ -333,4 +327,4 @@ body {
         max-width: 70%; 
     }
 
-}
+
