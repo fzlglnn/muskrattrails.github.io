@@ -41,7 +41,7 @@ body{
 .price{
     box-sizing: border-box;
     font-size: 1.3rem;
-    font-weight:normal;
+    font-weight:medium;
     text-align: left;
     max-width: 500px;
     margin: 10px;    
