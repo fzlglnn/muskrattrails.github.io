@@ -85,11 +85,34 @@ async function parseGPX(filePath, mapId) {
 }
 
 // Serve HTML pages
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.use(express.static(path.join(__dirname, 'public'), {
+    index: false,
+    extensions: ['css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'ico', 'svg']
+}));
+
+// 2. Manual HTML routing for ALL HTML files
+const htmlPages = {
+    '/': 'index.html',
+    '/ramble': 'ramble.html',
+    '/about': 'about.html',
+    '/zine': 'zine.html'
+    
+};
+
+// Create routes for all HTML pages
+Object.entries(htmlPages).forEach(([route, file]) => {
+    app.get(route, (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', file));
+    });
 });
-app.get('/Ramble', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'ramble.html'));
+
+// 3. Redirect .html extensions to clean URLs
+app.use((req, res, next) => {
+    if (req.url.endsWith('.html')) {
+        const cleanUrl = req.url.replace(/\.html$/, '');
+        return res.redirect(cleanUrl);
+    }
+    next();
 });
 
 // Endpoint to serve parsed GPX data
