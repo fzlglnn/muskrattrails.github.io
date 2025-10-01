@@ -9,7 +9,7 @@
     width: 100%;
     z-index: 1000;
 }
-body {
+#body {
     margin: 0;
     margin-top: 70px;
     font-family: Arial, sans-serif;    
@@ -23,13 +23,29 @@ body {
 #ramble-body{
     margin: 0;    
     font-family: Arial, sans-serif;
-    background-color: #add19e; /* Replace with your desired color code */
+    background-color: #add19e; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: 50px; /* Push main content below the fixed header */
     
 }
+#zine-body{
+    margin: 0;    
+    font-family: Arial, sans-serif;
+    background-color: beige; /* Replace with your desired color code */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 70px; /* Push main content below the fixed header */
+    
+}
+/* Zine title*/
+.hollow-text {
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: transparent;
+}
+
 /* Image in h1 tag */
 #nav-brand-logo{
     height: auto;
