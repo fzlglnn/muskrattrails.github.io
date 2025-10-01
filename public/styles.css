@@ -30,6 +30,15 @@
     padding-top: 50px; /* Push main content below the fixed header */
     
 }
+#about-body{
+    margin: 0;    
+    font-family: Arial, sans-serif;
+    background-color: #add19e; /* Replace with your desired color code */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 50px;
+}
 #zine-body{
     margin: 0;    
     font-family: Arial, sans-serif;
