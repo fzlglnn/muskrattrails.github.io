@@ -46,6 +46,18 @@ const generalLimiter = rateLimit({
     max: 100,
     message: 'Too many requests, please try again later.',
 });
+
+// Pages live at clean URLs (/about, not /about.html or /about/). Send those variants
+// to the clean address. This must run before express.static, which would otherwise
+// serve /about.html directly. (htmlPages is defined below and only read per request.)
+app.use((req, res, next) => {
+    const pagePath = req.path.replace(/\/+$/, '') || '/';
+    const route = Object.keys(htmlPages).find(r => r === pagePath || '/' + htmlPages[r] === pagePath);
+    if (!route || req.path === route) return next();
+    const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
+    res.redirect(301, route + query);
+});
+
 app.use(cors());
 // Static files are served before the rate limiter so that a page full of images
 // (the About page gallery has 58 thumbnails) doesn't use up a visitor's allowance.
@@ -105,15 +117,6 @@ Object.entries(htmlPages).forEach(([route, file]) => {
     app.get(route, (req, res) => {
         res.sendFile(path.join(__dirname, 'public', file));
     });
-});
-
-// 3. Redirect .html extensions to clean URLs
-app.use((req, res, next) => {
-    if (req.url.endsWith('.html')) {
-        const cleanUrl = req.url.replace(/\.html$/, '');
-        return res.redirect(cleanUrl);
-    }
-    next();
 });
 
 // Endpoint to serve parsed GPX data

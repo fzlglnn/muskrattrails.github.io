@@ -15,16 +15,16 @@ document.currentScript.insertAdjacentHTML('afterend', `
     <div class="collapse navbar-collapse order-3" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./ramble.html">Ramble</a>
+          <a class="nav-link" href="/ramble">Ramble</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./about.html">About</a>
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./zine.html">Zine</a>
+          <a class="nav-link" href="/zine">Zine</a>
         </li>
       </ul>
     </div>
