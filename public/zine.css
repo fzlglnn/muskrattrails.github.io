@@ -115,3 +115,22 @@ body{
   from {opacity: .4}
   to {opacity: 1}
 }
+
+/* Bigger tap targets on touch screens and small screens. The dot stays small
+   visually; an invisible pseudo-element extends the area that responds to taps. */
+@media (max-width: 991.98px), (pointer: coarse) {
+  .dot {
+    position: relative;
+    height: 12px;
+    width: 12px;
+    margin: 0 9px;
+  }
+  .dot::after {
+    content: "";
+    position: absolute;
+    inset: -16px -9px;
+  }
+  .numbertext {
+    font-size: 14px;
+  }
+}

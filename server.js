@@ -46,9 +46,11 @@ const generalLimiter = rateLimit({
     max: 100,
     message: 'Too many requests, please try again later.',
 });
-app.use(generalLimiter);
 app.use(cors());
+// Static files are served before the rate limiter so that a page full of images
+// (the About page gallery has 58 thumbnails) doesn't use up a visitor's allowance.
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(generalLimiter);
 
 const cachedCoordinates = {};  // ← Changed from null to {}
 
@@ -86,8 +88,7 @@ async function parseGPX(filePath, mapId) {
 
 // Serve HTML pages
 app.use(express.static(path.join(__dirname, 'public'), {
-    index: false,
-    extensions: ['css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'ico', 'svg']
+    index: false
 }));
 
 // 2. Manual HTML routing for ALL HTML files

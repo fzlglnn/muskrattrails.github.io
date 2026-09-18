@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muskrat Trails About</title>
     <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core></script> 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="gallery.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -20,47 +17,78 @@
 <body id="about-body">
     <header id="header">   
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-                <div class="container-fluid">
-                    <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!--LOGO-->
-                    <a href="/" class="navbar-brand order-2" style="text-decoration: none;">
-                        <img id="nav-brand-logo" src="./images/website_logo.png" alt="My Website Logo">
-                    </a>                  
-                  <div class="collapse navbar-collapse navbar-collapse order-3" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">                  
-                      <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./ramble.html">Ramble</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./zine.html">Zine</a>
-                      </li>                        
-                    </ul>
-                  </div>
-                </div>
-              </nav>
+            <script src="nav.js"></script>
         </div>            
     </header>        
  <main id="main"> 
       <div id="about-txt-container">
         <p id="about-blerb">We're people who like to ride bikes. If you're one of those people, then it's likely we'll be fast friends.</p>
       </div> 
-      <div style="width: 95vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"> 
-  <!-- Elfsight Photo Gallery | Untitled Photo Gallery -->         
-        <div class="elfsight-app-b9201511-798c-4f7b-a3fa-fd4f5b6bea4d" data-elfsight-app-lazy></div> 
-      </div>  
+      <section class="gallery" aria-label="Photo gallery">
+        <div class="gallery-grid">
+          <a class="gallery-tile" href="./images/gallery/full/01.jpg" aria-label="View photo 1 of 58"><img src="./images/gallery/thumbs/01.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/02.jpg" aria-label="View photo 2 of 58"><img src="./images/gallery/thumbs/02.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/03.jpg" aria-label="View photo 3 of 58"><img src="./images/gallery/thumbs/03.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/04.jpg" aria-label="View photo 4 of 58"><img src="./images/gallery/thumbs/04.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/05.jpg" aria-label="View photo 5 of 58"><img src="./images/gallery/thumbs/05.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/06.jpg" aria-label="View photo 6 of 58"><img src="./images/gallery/thumbs/06.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/07.jpg" aria-label="View photo 7 of 58"><img src="./images/gallery/thumbs/07.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/08.jpg" aria-label="View photo 8 of 58"><img src="./images/gallery/thumbs/08.jpg" alt="" width="480" height="480" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/09.jpg" aria-label="View photo 9 of 58"><img src="./images/gallery/thumbs/09.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/10.jpg" aria-label="View photo 10 of 58"><img src="./images/gallery/thumbs/10.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/11.jpg" aria-label="View photo 11 of 58"><img src="./images/gallery/thumbs/11.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/12.jpg" aria-label="View photo 12 of 58"><img src="./images/gallery/thumbs/12.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/13.jpg" aria-label="View photo 13 of 58"><img src="./images/gallery/thumbs/13.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/14.jpg" aria-label="View photo 14 of 58"><img src="./images/gallery/thumbs/14.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/15.jpg" aria-label="View photo 15 of 58"><img src="./images/gallery/thumbs/15.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/16.jpg" aria-label="View photo 16 of 58"><img src="./images/gallery/thumbs/16.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/17.jpg" aria-label="View photo 17 of 58"><img src="./images/gallery/thumbs/17.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/18.jpg" aria-label="View photo 18 of 58"><img src="./images/gallery/thumbs/18.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/19.jpg" aria-label="View photo 19 of 58"><img src="./images/gallery/thumbs/19.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/20.jpg" aria-label="View photo 20 of 58"><img src="./images/gallery/thumbs/20.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/21.jpg" aria-label="View photo 21 of 58"><img src="./images/gallery/thumbs/21.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/22.jpg" aria-label="View photo 22 of 58"><img src="./images/gallery/thumbs/22.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/23.jpg" aria-label="View photo 23 of 58"><img src="./images/gallery/thumbs/23.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/24.jpg" aria-label="View photo 24 of 58"><img src="./images/gallery/thumbs/24.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/25.jpg" aria-label="View photo 25 of 58"><img src="./images/gallery/thumbs/25.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/26.jpg" aria-label="View photo 26 of 58"><img src="./images/gallery/thumbs/26.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/27.jpg" aria-label="View photo 27 of 58"><img src="./images/gallery/thumbs/27.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/28.jpg" aria-label="View photo 28 of 58"><img src="./images/gallery/thumbs/28.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/29.jpg" aria-label="View photo 29 of 58"><img src="./images/gallery/thumbs/29.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/30.jpg" aria-label="View photo 30 of 58"><img src="./images/gallery/thumbs/30.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/31.jpg" aria-label="View photo 31 of 58"><img src="./images/gallery/thumbs/31.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/32.jpg" aria-label="View photo 32 of 58"><img src="./images/gallery/thumbs/32.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/33.jpg" aria-label="View photo 33 of 58"><img src="./images/gallery/thumbs/33.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/34.jpg" aria-label="View photo 34 of 58"><img src="./images/gallery/thumbs/34.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/35.jpg" aria-label="View photo 35 of 58"><img src="./images/gallery/thumbs/35.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/36.jpg" aria-label="View photo 36 of 58"><img src="./images/gallery/thumbs/36.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/37.jpg" aria-label="View photo 37 of 58"><img src="./images/gallery/thumbs/37.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/38.jpg" aria-label="View photo 38 of 58"><img src="./images/gallery/thumbs/38.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/39.jpg" aria-label="View photo 39 of 58"><img src="./images/gallery/thumbs/39.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/40.jpg" aria-label="View photo 40 of 58"><img src="./images/gallery/thumbs/40.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/41.jpg" aria-label="View photo 41 of 58"><img src="./images/gallery/thumbs/41.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/42.jpg" aria-label="View photo 42 of 58"><img src="./images/gallery/thumbs/42.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/43.jpg" aria-label="View photo 43 of 58"><img src="./images/gallery/thumbs/43.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/44.jpg" aria-label="View photo 44 of 58"><img src="./images/gallery/thumbs/44.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/45.jpg" aria-label="View photo 45 of 58"><img src="./images/gallery/thumbs/45.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/46.jpg" aria-label="View photo 46 of 58"><img src="./images/gallery/thumbs/46.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/47.jpg" aria-label="View photo 47 of 58"><img src="./images/gallery/thumbs/47.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/48.jpg" aria-label="View photo 48 of 58"><img src="./images/gallery/thumbs/48.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/49.jpg" aria-label="View photo 49 of 58"><img src="./images/gallery/thumbs/49.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/50.jpg" aria-label="View photo 50 of 58"><img src="./images/gallery/thumbs/50.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/51.jpg" aria-label="View photo 51 of 58"><img src="./images/gallery/thumbs/51.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/52.jpg" aria-label="View photo 52 of 58"><img src="./images/gallery/thumbs/52.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/53.jpg" aria-label="View photo 53 of 58"><img src="./images/gallery/thumbs/53.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/54.jpg" aria-label="View photo 54 of 58"><img src="./images/gallery/thumbs/54.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/55.jpg" aria-label="View photo 55 of 58"><img src="./images/gallery/thumbs/55.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/56.jpg" aria-label="View photo 56 of 58"><img src="./images/gallery/thumbs/56.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/57.jpg" aria-label="View photo 57 of 58"><img src="./images/gallery/thumbs/57.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+          <a class="gallery-tile" href="./images/gallery/full/58.jpg" aria-label="View photo 58 of 58"><img src="./images/gallery/thumbs/58.jpg" alt="" width="480" height="480" loading="lazy" decoding="async"></a>
+        </div>
+      </section>
  </main>       
-     <!-- Bootstrap JS and dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Link to the external window_events.js file -->
-<script src="window_events.js"></script>   
+<script src="window_events.js"></script>
+<script src="gallery.js"></script>   
 </body>
 </html>

@@ -367,3 +367,24 @@
     }
 
 
+
+
+/* ---- Mobile and tablet refinements ---- */
+
+/* 100vh ignores a phone's collapsing browser toolbar, which leaves short pages
+   scrolling for no reason. Use the visible viewport height where supported. */
+@supports (min-height: 100dvh) {
+    #ramble-body,
+    #about-body,
+    #zine-body {
+        min-height: 100dvh;
+    }
+}
+
+/* The hamburger menu is shown below Bootstrap's lg breakpoint (992px), so make
+   the links in the dropdown comfortable to tap (about 48px tall). */
+@media (max-width: 991.98px) {
+    .navbar-collapse .nav-link {
+        padding: 12px 16px !important;
+    }
+}

@@ -1,88 +1,60 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muskrat Trails Ramble</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="zine.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muskrat Trails Ramble</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="zine.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body id="ramble-body">
-  <header id="header">   
+  <header id="header">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-            <div class="container-fluid">
-                <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!--LOGO-->
-                <a href="/" class="navbar-brand order-2" style="text-decoration: none;">
-                    <img id="nav-brand-logo" src="./images/website_logo.png" alt="My Website Logo">
-                </a>                  
-              <div class="collapse navbar-collapse navbar-collapse order-3" id="navbarNav">
-                <ul class="navbar-nav ms-auto">                  
-                  <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./ramble.html">Ramble</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./zine.html">Zine</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>            
-      </header>   
-      <main id="ramble-main">
-        <div id="ramble-col-2">
-              <div id ="ramble-text-box">
-                The Muskrat Ramble is a self-supported, multi-day bikepacking event. Beginning in downtown Columbia, 
-                it follows the MKT and Katy Trails along the scenic Missouri River, leading to our campsite(s) in Hartsburg.
-                <p>Sign up for the 2026 Ramble <a href="http://tiny.cc/n7ma101" target="_blank" rel="noopener noreferrer">here.</a></p>          
-              </div>                    
-          </div>          
-          <br>          
-          <div id="ramble-map-section">
-              <div id="ramble-flyer" >
-                  <img src="./images/2026THERIDE.jpg" alt="Ride outline">
-              </div>                       
-          </div> 
-          <div id="flyer-section00">
-              <div id="packinglist-flyer" >
-                  <img src="./images/packinglist.jpg" alt="train">
-              </div>                       
-          </div>         
-         <!--<div id="ramble-map" >
-              <script src="scripts.js"></script>
-         </div>               
-          <br>
-          <iframe id="YT-container" src="https://www.youtube.com/embed/YNq-mKiLfPY?si=S1X_oedeNyiD7xAA"
-                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-                gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-          </iframe> -->
-          <iframe src="https://ridewithgps.com/embeds?type=route&id=52681932&distanceMarkers=true" 
-            style="width: 1px; min-width: 100%; height: 550px; border: none;" scrolling="no">
-          </iframe>
-      </main>    
-          <!-- Bootstrap JS and dependencies 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Link to the external window_events.js file 
-      <script src="window_events.js"></script> -->
+      <script src="nav.js"></script>
+    </div>
+  </header>
+
+  <main id="ramble-main">
+    <div id="ramble-col-2">
+      <div id="ramble-text-box">
+        The Muskrat Ramble is a self-supported, multi-day bikepacking event. Beginning in downtown Columbia,
+        it follows the MKT and Katy Trails along the scenic Missouri River, leading to our campsite(s) in Hartsburg.
+        <p>Sign up for the 2026 Ramble <a href="http://tiny.cc/n7ma101" target="_blank" rel="noopener noreferrer">here.</a></p>
+      </div>
+    </div>
+    <br>
+    <div id="ramble-map-section">
+      <div id="ramble-flyer">
+        <img src="./images/2026THERIDE.jpg" alt="Ride outline">
+      </div>
+    </div>
+    <div id="flyer-section00">
+      <div id="packinglist-flyer">
+        <img src="./images/packinglist.jpg" alt="Packing list">
+      </div>
+    </div>
+    <!--
+    <div id="ramble-map">
+      <script src="scripts.js"></script>
+    </div>
+    <br>
+    <iframe id="YT-container" src="https://www.youtube.com/embed/YNq-mKiLfPY?si=S1X_oedeNyiD7xAA"
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+      gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+    -->
+    <iframe src="https://ridewithgps.com/embeds?type=route&id=52681932&distanceMarkers=true"
+      title="Ramble route map"
+      style="width: 1px; min-width: 100%; height: 550px; border: none;" scrolling="no">
+    </iframe>
+  </main>
+
+  <!-- Close the mobile menu when tapping outside it -->
+  <script src="window_events.js"></script>
 </body>
 </html>
