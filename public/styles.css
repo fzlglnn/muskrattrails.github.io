@@ -388,3 +388,27 @@
         padding: 12px 16px !important;
     }
 }
+
+
+/* Header fades out while scrolling down and back in when scrolling up.
+   The class is toggled by the scroll code in window_events.js. */
+#header {
+    transition: opacity 0.3s ease;
+}
+
+#header.header-hidden {
+    opacity: 0;
+    pointer-events: none; /* a faded-out header must not catch taps */
+}
+
+/* Keyboard users tabbing into the menu always get to see it */
+#header:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #header {
+        transition: none;
+    }
+}
