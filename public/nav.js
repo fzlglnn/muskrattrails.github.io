@@ -21,7 +21,7 @@ document.currentScript.insertAdjacentHTML('afterend', `
           <a class="nav-link" href="/ramble">Ramble</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/about">Gallery</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/zine">Zine</a>

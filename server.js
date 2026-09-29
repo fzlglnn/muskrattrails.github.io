@@ -2,37 +2,29 @@
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
-const fs = require('fs').promises;
-const xml2js = require('xml2js');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
+const compression = require('compression');
+const { getEventsInRange } = require('./discord-events');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-const AVAILABLE_MAPS = {
-  'Sunday-Slow-Ride': {
-    path: path.join(__dirname, 'public', 'gpx_files', 'Afternoon_Ride.gpx'),
-    name: 'Sunday Slow Ride',
-    description: 'Map of possible routes for Sunday slow ride'
-  },
-  'Ramble-Map': {
-    path: path.join(__dirname, 'public', 'gpx_files', '2025_Ramble.gpx'),
-    name: 'Ramble Map',
-    description: 'Map of Ramble route'
-  }
-
-};
 
 // Middleware
 app.use(helmet());
 app.disable('x-powered-by');
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'tiny'));
+app.use(compression()); // gzip HTML, CSS, JS and JSON (images are already compressed and are skipped)
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ limit: '10kb', extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
+    // In production the app sits behind the host's proxy (that's why x-forwarded-proto is
+    // read below). Trusting it lets the rate limiter see each visitor's real IP instead of
+    // the proxy's. The number is how many proxies sit in front of the app: 1 for a host
+    // like Heroku; use 2 if something like Cloudflare is added in front of it.
+    app.set('trust proxy', 1);
     app.use((req, res, next) => {
         if (req.headers['x-forwarded-proto'] !== 'https') {
             return res.redirect(`https://${req.headers.host}${req.url}`);
@@ -59,44 +51,26 @@ app.use((req, res, next) => {
 });
 
 app.use(cors());
-// Static files are served before the rate limiter so that a page full of images
-// (the About page gallery has 58 thumbnails) doesn't use up a visitor's allowance.
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(generalLimiter);
 
-const cachedCoordinates = {};  // ← Changed from null to {}
-
-// Utility function to parse GPX file and extract coordinates
-async function parseGPX(filePath, mapId) {
-    try {
-        // Return cached data if available
-        if (cachedCoordinates[mapId]) {
-            console.log(`Returning cached coordinates for ${mapId}`);
-            return cachedCoordinates[mapId];
-        }
-
-        console.log(`Parsing GPX file: ${filePath} for map: ${mapId}`);
-        const gpxContent = await fs.readFile(filePath, 'utf8');
-        const parser = new xml2js.Parser();
-        const result = await parser.parseStringPromise(gpxContent);
-
-        // Extract coordinates from GPX data
-        const trackPoints = result.gpx.trk[0].trkseg[0].trkpt;
-        const coordinates = trackPoints.map(point => [
-            parseFloat(point.$.lat),
-            parseFloat(point.$.lon)
-        ]);
-
-        // Cache the coordinates with the map ID
-        cachedCoordinates[mapId] = coordinates;
-        console.log(`Cached coordinates for ${mapId}, points: ${coordinates.length}`);
-        
-        return coordinates;
-    } catch (error) {
-        console.error('Error parsing GPX file:', error);
-        throw new Error('Failed to parse GPX file');
+// Images rarely change, so let browsers keep them instead of re-checking on every visit.
+// HTML, CSS and JS keep the default (re-check every time) so edits show up right away.
+// If you replace an image under the same file name, visitors may see the old one until
+// its cache lifetime runs out (1 day, or 1 week for the About page gallery photos).
+const ONE_DAY = 'public, max-age=86400';
+const ONE_WEEK = 'public, max-age=604800';
+function setCacheHeaders(res, filePath) {
+    const rel = path.relative(path.join(__dirname, 'public'), filePath).split(path.sep).join('/');
+    if (rel.startsWith('images/gallery/')) {
+        res.setHeader('Cache-Control', ONE_WEEK);
+    } else if (/\.(jpe?g|png|gif|webp|svg|ico|pdf)$/i.test(rel)) {
+        res.setHeader('Cache-Control', ONE_DAY);
     }
 }
+
+// Static files are served before the rate limiter so that a page full of images
+// (the About page gallery has 58 thumbnails) doesn't use up a visitor's allowance.
+app.use(express.static(path.join(__dirname, 'public'), { setHeaders: setCacheHeaders }));
+app.use(generalLimiter);
 
 // Serve HTML pages
 app.use(express.static(path.join(__dirname, 'public'), {
@@ -109,7 +83,6 @@ const htmlPages = {
     '/ramble': 'ramble.html',
     '/about': 'about.html',
     '/zine': 'zine.html'
-    
 };
 
 // Create routes for all HTML pages
@@ -119,32 +92,19 @@ Object.entries(htmlPages).forEach(([route, file]) => {
     });
 });
 
-// Endpoint to serve parsed GPX data
-app.get('/get-coordinates/:mapId', async (req, res, next) => {
+// Serves upcoming Discord "Scheduled Events" as calendar occurrences for the
+// month-view calendar on the home page. FullCalendar calls this with the visible
+// date range every time the user changes months, so start/end come from the query string.
+app.get('/api/events', async (req, res, next) => {
     try {
-        const mapId = req.params.mapId;
-        console.log(`Request received for map: ${mapId}`);
-        
-        // Check if the requested map exists
-        if (!AVAILABLE_MAPS[mapId]) {
-            console.warn(`Map not found: ${mapId}`);
-            return res.status(404).json({ 
-                error: 'Map not found',
-                availableMaps: Object.keys(AVAILABLE_MAPS)
-            });
+        const start = req.query.start ? new Date(req.query.start) : new Date();
+        const end = req.query.end ? new Date(req.query.end) : new Date(start.getTime() + 31 * 24 * 60 * 60 * 1000);
+        if (isNaN(start) || isNaN(end) || end <= start) {
+            return res.status(400).json({ error: 'start and end must be valid ISO dates, with end after start' });
         }
-        
-        // Get the file path for the requested map
-        const filePath = AVAILABLE_MAPS[mapId].path;
-        
-        // Parse the GPX file and get coordinates
-        const coordinates = await parseGPX(filePath, mapId);
-        
-        // Return the coordinates as JSON
-        res.json(coordinates);
-        
+        const events = await getEventsInRange(start, end);
+        res.json(events);
     } catch (error) {
-        console.error('Error in get-coordinates endpoint:', error);
         next(error);
     }
 });
@@ -162,9 +122,5 @@ app.listen(PORT, (err) => {
         process.exit(1);
     } else {
         console.log(`Server running on port ${PORT}`);
-        console.log('Available maps:');
-        Object.keys(AVAILABLE_MAPS).forEach(key => {
-            console.log(`- ${key}: ${AVAILABLE_MAPS[key].name}`);
-        });
     }
 });

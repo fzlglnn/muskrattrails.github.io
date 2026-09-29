@@ -9,17 +9,6 @@
     width: 100%;
     z-index: 1000;
 }
-#body {
-    margin: 0;
-    margin-top: 70px;
-    font-family: Arial, sans-serif;    
-    display: flex;
-    flex-direction: column;
-    background-color: #add19e !important;
-    min-height: 100vh;
-    box-sizing: border-box;
-    padding-top: 50px; /* Push main content below the fixed header */    
-}
 #ramble-body{
     margin: 0;    
     font-family: Arial, sans-serif;
@@ -83,11 +72,15 @@
     flex-direction: column; 
     justify-content: center; 
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
     padding: 20px;
     padding-top: 90px;
-    max-width: 500px;
-    margin: 0 auto; 
+    /* 940px so that, after this element's own 20px left/right padding, its children
+       (the text box, images) land at exactly 900px -- matching the home page's
+       content width (#home-text-box/#calendar), which isn't inset by a parent's
+       padding the way this element's children are. */
+    max-width: 940px;
+    margin: 0 auto;
 }
 
 /* Column 2 for home page */
@@ -111,13 +104,17 @@
 }
 
 /* Home text box */
-#home-text-box {    
-    font-size: 20px; /* Adjust the font size */   
+#home-text-box {
+    font-size: 20px; /* Adjust the font size */
     color: rgb(0, 0, 0);
     background-color: beige; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
-    border: none; /* Remove the border */   
-    margin-bottom: 20px;
+    border: none; /* Remove the border */
+    border-radius: 8px; /* Match the calendar's corners (#calendar in events.css) */
+    margin: 0 auto 20px;
+    width: 100%;
+    max-width: 900px; /* Match the calendar's width (#calendar in events.css) */
+    box-sizing: border-box;
 }
 #ramble-text-box {   
     font-size: 20px; /* Adjust the font size */   
@@ -125,30 +122,10 @@
     background-color: beige; /* Set the background to white */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
+    border-radius: 8px; /* Match the home page text box (#home-text-box) */
     /*margin: 0 auto;*/
-    max-width: 500px;
+    max-width: 900px; /* Match the home page text box's width */
     overflow: visible;
-}
-
-/* Map section */
-#map-section {
-    flex: 1; /* Allow the map to take up one part of the space */
-    display: flex;
-    margin-top: 0px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-}
-/* Map styles */
-#slow-ride-map {
-    width: 100%;
-    height: 75vh;     
-    z-index: 999;
-}
-
-.leaflet-control-attribution {
-    font-size: 7px; /* Change the font size of OpenStreetMap logo to make the text smaller/larger */
 }
 
 #ramble-map-section{
@@ -168,12 +145,6 @@
     margin:auto;
 }
 
-/* Smaller ramble map */
-#ramble-map {   
-     width: 100%;
-    height: 75vh;     
-    z-index: 999;
-}
 #packinglist-flyer img{
    width: 100%; /* Ensure the image fills the width of the container */
     height: 100%; /* Ensure the image fills the height of the container */
@@ -185,44 +156,6 @@
     height: 100%; /* Ensure the image fills the height of the container */
     object-fit: contain; /* Make sure the image covers the container without distorting */
     padding-bottom: 20px;
-}
-
-#ride-details-section{
-    flex: 2; /* Allow the map section to take up the space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;    
-    margin: 0 auto; /* Center the content */
-    max-width: 500px; /* Match the maximum width of the original map */
-    overflow: scroll;
-}
-
-#ride-details-graphic{
-    width: 100%; /* Fill the container */
-    height: auto; /* Same height calculation as the original map */
-    min-height: 100vh;
-    z-index: 999;     
-    overflow: visible; /* Ensure content inside stays within the bounds */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-#ride-details-graphic img{
-    width: 100%; /* Ensure the image fills the width of the container */
-    height: auto; /* Ensure the image fills the height of the container */
-    object-fit: contain; /* Make sure the image covers the container without distorting */
-    padding-bottom: 20px;
-}
-
-#ramble-vid {
-    padding-top: 20px;
-    width: 100%;            /* Make video responsive */
-    max-width: 500px;       /* Limit the maximum width of the video */
-    height: auto;
-    aspect-ratio: 16/9;     /* Maintain 16:9 aspect ratio */
 }
 
 /* Navigation link styles */
@@ -274,28 +207,14 @@
     font-size: 20px; /* Adjust the font size */   
     color: rgb(0, 0, 0);    
     text-align: left;
-    background-color: beige; 
+    background-color: beige;
     padding: 10px; /* Padding inside the text box */
     border: none;
+    border-radius: 8px; /* Match the home page text box (#home-text-box) */
     margin: 0 auto;
-    margin-top: 40px;    
+    margin-top: 40px;
     width: 100%;
     max-width: 1000px;
-}
-
-#YT-container{
-    position: relative;
-    width: 100%; /* Full width of the container */
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
-    height: auto;
-    overflow: hidden;
-}
-
-#YT-vid {
-    width: 100%; /* Ensures the video is responsive */
-    max-width: 1000px; /* Keeps the video at its original width on larger screens */
-    height: auto;
-    aspect-ratio: 16/9; /* Maintains a 16:9 aspect ratio */
 }
 
 /* Responsive: Stack columns on smaller screens */
@@ -314,15 +233,6 @@
         padding-top: 90px;
         max-width: auto;
         margin: 0 auto; /* Center the content */
-    }
-
-    #map-section, #home-col-2 {
-        width: 100%; /* Make both sections take full width on small screens */
-        height: auto; /* Adjust height based on content */
-    }
-
-    #map {
-        height: 300px; /* Adjust the map height for smaller screens */
     }
 
     #home-text-box{

@@ -1,0 +1,241 @@
+/* Events / calendar page */
+
+#events-empty,
+#events-error {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+/* --- FullCalendar, restyled to match the site's palette --- */
+
+#calendar {
+    width: 100%;
+    max-width: 900px;
+    background-color: beige;
+    border-radius: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    /* A horizontal swipe changes the month (events.js); it must not also trigger
+       the browser's own back/forward swipe gesture. Vertical scroll still works. */
+    touch-action: pan-y;
+    overscroll-behavior: none;
+}
+
+.fc {
+    font-family: Arial, sans-serif;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 2rem;
+    font-family: 'Alfa Slab One', serif; /* matches the MUSKRAT wordmark in the logo */
+}
+
+.fc .fc-button-primary {
+    background-color: rgba(181, 155, 124, 1);
+    border-color: rgba(181, 155, 124, 1);
+    box-shadow: none;
+}
+
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:focus-visible {
+    background-color: rgba(161, 135, 104, 1);
+    border-color: rgba(161, 135, 104, 1);
+}
+
+.fc .fc-button-primary:disabled {
+    background-color: rgba(181, 155, 124, 0.5);
+    border-color: rgba(181, 155, 124, 0.5);
+}
+
+.fc .fc-today-button {
+    text-transform: capitalize;
+}
+
+.fc .fc-day-today {
+    background-color: rgba(173, 209, 158, 0.35); /* a soft tint of the site's green */
+}
+
+.fc .fc-daygrid-day-number {
+    color: #333;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Day cells with events show one plain colored bar per event (color set per-event
+   in events.js via backgroundColor/borderColor), stacked vertically -- this is
+   FullCalendar's own native block-event layout and containment, just with its
+   title/time text suppressed (see eventContent in events.js). */
+.fc-daygrid-day-frame {
+    cursor: pointer; /* the whole day cell opens that day's events, not just a bar */
+}
+
+.fc-daygrid-day-events {
+    margin-top: 2px;
+}
+
+.fc-daygrid-event-harness {
+    /* Small side/bottom breathing room only -- never touch margin-top: FullCalendar
+       computes that itself to stack a single-day event below a spanning multi-day
+       bar sharing its row, and overriding it collapses them onto the same row. */
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+.fc-event {
+    /* Plain block layout, not flex: text-overflow:ellipsis on a flex child can end
+       up sized to its content's natural width regardless of width/min-width, even
+       though it looks fine until a long title actually needs truncating. Vertical
+       centering comes from line-height matching the bar's height instead. */
+    height: auto;
+    min-height: 16px;
+    line-height: 16px;
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 1px 4px;
+    overflow: hidden; /* belt-and-suspenders: the title can never visibly spill past the bar */
+}
+
+/* A segment carrying BOTH classes is the event's true start and true end at once --
+   i.e. a one-day event, never a multi-day span (which always gets only one of the
+   two, or neither, on any given day's segment). Shorten just those to half width,
+   left-aligned by default since nothing centers or floats it. */
+.fc-event.fc-event-start.fc-event-end {
+    width: 50%;
+}
+
+/* The event's title, in white, cut short with an ellipsis rather than ever
+   overflowing the bar -- a partial title is fine; spilling past the bar is not. */
+.event-bar-label {
+    display: block;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    line-height: inherit; /* matches .fc-event's line-height, for vertical centering */
+    white-space: nowrap;
+    overflow: hidden; /* required on this element itself for text-overflow to take effect */
+    text-overflow: ellipsis;
+}
+
+/* Smaller text and tighter toolbar on phones */
+@media (max-width: 480px) {
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .fc .fc-toolbar-title {
+        font-size: 1.4rem;
+    }
+    .fc .fc-daygrid-day-number {
+        font-size: 0.72rem;
+    }
+    .fc .fc-button {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+}
+
+/* --- Event detail dialog --- */
+
+#event-dialog {
+    width: min(420px, calc(100vw - 32px));
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: beige;
+    color: #000;
+    box-sizing: border-box;
+}
+
+#event-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+#event-dialog-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.08);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#event-dialog-heading {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    margin: 0 0 12px;
+    padding-right: 28px; /* keep clear of the close button */
+}
+
+/* One card per event on the clicked day. Each is tinted and left-bordered in
+   that event's series color (assigned in events.js) so a day with several
+   different events reads as several distinct, color-coordinated cards. */
+#event-dialog-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.event-card {
+    border-left: 4px solid; /* color set inline per card */
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+
+.event-card-image {
+    display: block;
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.event-card-title {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    margin: 0 0 4px;
+}
+
+.event-card-when {
+    font-weight: bold;
+    margin: 0 0 4px;
+}
+
+.event-card-location,
+.event-card-count {
+    color: #333;
+    margin: 0 0 4px;
+}
+
+.event-card-description {
+    margin: 0 0 10px;
+    white-space: pre-wrap;
+}
+
+.event-card-link {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: bold;
+    filter: brightness(1); /* placeholder so :hover below has something to change */
+}
+
+.event-card-link:hover,
+.event-card-link:focus-visible {
+    filter: brightness(0.85);
+}

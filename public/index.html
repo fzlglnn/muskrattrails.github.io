@@ -5,38 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muskrat Trails Home Page</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Alfa+Slab+One&family=Lora:wght@400&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- FullCalendar (month view). Free/MIT core bundle: https://fullcalendar.io/docs/initialize-globals -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script>
+    <link rel="stylesheet" href="events.css">
 </head>
 <body>
-    <header id="header">   
+    <header id="header">
         <div class="container">
             <script src="nav.js"></script>
-        </div>           
+        </div>
     </header>
     <main id="main">
         <div id="home-col-1">
-            <div id ="home-text-box">
-              This map outlines some of the typical routes for our Sunday Slow Ride. 
-              We depart from the Flat Branch Park Trailhead in downtown Columbia at 2 PM. The ride returns to Flat Branch Park at 4 PM. We ride slooow 
-              and we stop often. This ride is for bicyclists of all abilities.               
+            <div id="home-text-box">
+              <p>Muskrat Trails exists to foster community through the act of riding bicycles, utilizing
+                community trails and spaces, and building events for adventure-minded creatives and wanderers
+                alike.</p>
+              <p>Our goal is to get outside more, share knowledge related to camping, hiking, and bike
+                maintenance. We hold regular events to engage with other humans face-to-face. Sunday Slow Rides, the
+                bi-annual Muskrat Ramble, bike work shops, and more.</p>
+              <p>While the modern age encourages humans to move fast, we look to slow it down. Pop into the
+                <a href="https://discord.gg/XKhVE7tA4f" target="_blank" rel="noopener noreferrer">Muskrat Lounge Discord</a>
+                for the most up-to-date happenings. </p>
+            </div>
         </div>
         <br>
-        <iframe src="https://ridewithgps.com/embeds?type=route&id=52687927&title=Sunday%20Slow%20Ride&distanceMarkers=true" 
-          style="width: 1px; min-width: 100%; height: 550px; border: none;" scrolling="no">
-        </iframe>
-        <!--<div id="map-section">
-            <div id="slow-ride-map"></div>
-            <script src="scripts.js"></script>             
-        </div> -->     
-    </main>  
+
+        <div id="calendar"></div>
+        <p id="events-empty" hidden>No events are on the calendar right now &mdash; check back soon, or hop into the
+          <a href="https://discord.gg/XKhVE7tA4f" target="_blank" rel="noopener noreferrer">Discord</a> to see what's being planned.</p>
+        <p id="events-error" hidden>Couldn't load the calendar right now. Try refreshing, or see
+          <a href="https://discord.gg/XKhVE7tA4f" target="_blank" rel="noopener noreferrer">Discord</a> directly.</p>
+    </main>
+
+    <!-- Event detail popup, opened by events.js. Populated with one .event-card
+         per event on the clicked day (there can be more than one). -->
+    <dialog id="event-dialog">
+        <button type="button" id="event-dialog-close" aria-label="Close">&times;</button>
+        <h2 id="event-dialog-heading"></h2>
+        <div id="event-dialog-cards"></div>
+    </dialog>
+
 <!-- Link to the external window_events.js file -->
-<script src="window_events.js"></script> 
+<script src="window_events.js"></script>
+<script src="events.js"></script>
 </body>
 </html>
