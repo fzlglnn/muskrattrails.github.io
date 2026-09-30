@@ -1,13 +1,21 @@
 * {box-sizing:border-box}
 h1 {
   display: block;
-  font-size: 2em;
   margin-top: 0.67em;
   margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   text-align: center;
   font-weight: bold;
+}
+
+/* Bootstrap's own CSS loads after this file and resets h1's color and
+   font-size, which wins the cascade tie against a bare h1 selector -- so
+   this needs to be more specific, not just later in the file. */
+.title-price-container h1 {
+  color: #fff;
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: clamp(1.8rem, 8.5vw, 2.8rem); /* scales to span the gallery's width below it */
 }
 body{
   padding-top: 80px;  

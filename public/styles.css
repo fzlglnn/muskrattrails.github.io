@@ -49,12 +49,6 @@
     padding-top: 70px; /* Push main content below the fixed header */
     
 }
-/* Zine title*/
-.hollow-text {
-    -webkit-text-stroke: 1px white;
-    -webkit-text-fill-color: transparent;
-}
-
 /* Image in h1 tag */
 #nav-brand-logo{
     height: auto;
@@ -280,6 +274,18 @@
 
 
 /* ---- Mobile and tablet refinements ---- */
+
+/* On phones, the 20px side padding on #main/#ramble-main (sized for desktop,
+   to keep their children lined up with the home page's 900px-wide content)
+   eats too much of a narrow screen. Shrink it so content spans most of the
+   width instead. */
+@media (max-width: 600px) {
+    #main,
+    #ramble-main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
 
 /* 100vh ignores a phone's collapsing browser toolbar, which leaves short pages
    scrolling for no reason. Use the visible viewport height where supported. */
