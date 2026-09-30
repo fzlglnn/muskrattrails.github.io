@@ -9,15 +9,26 @@
     width: 100%;
     z-index: 1000;
 }
-#ramble-body{
-    margin: 0;    
+#home-body{
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #add19e; 
+    background-color: #add19e; /* The footer sits outside #main, which is the only
+                                   other element carrying this green -- without this,
+                                   the page falls back to the browser's default white
+                                   behind the footer. */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#ramble-body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #add19e;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: 50px; /* Push main content below the fixed header */
-    
+
 }
 #about-body{
     margin: 0;    
@@ -284,6 +295,7 @@
 /* 100vh ignores a phone's collapsing browser toolbar, which leaves short pages
    scrolling for no reason. Use the visible viewport height where supported. */
 @supports (min-height: 100dvh) {
+    #home-body,
     #ramble-body,
     #about-body,
     #zine-body {
@@ -321,4 +333,49 @@
     #header {
         transition: none;
     }
+}
+
+/* Shared footer (injected by footer.js): Discord/YouTube/Instagram badges.
+   No background of its own, so it sits correctly on every page regardless of
+   that page's own background color (green on most pages, beige on the zine). */
+#footer {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.footer-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.footer-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: transparent; /* shows the page's own background, not a solid color of its own */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.footer-badge svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* A subtle wash on hover/focus, since a fully transparent badge would otherwise
+   give no visible sign it's interactive. */
+.footer-badge:hover,
+.footer-badge:focus-visible {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* On the zine page only, the badges are brown (matching the nav bar) instead of
+   white -- #zine-body is unique to this page, unlike zine.css which ramble.html
+   also loads, so this doesn't affect Ramble's footer. */
+#zine-body .footer-badge {
+    color: rgba(181, 155, 124, 1);
 }

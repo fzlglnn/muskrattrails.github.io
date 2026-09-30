@@ -39,11 +39,16 @@ const generalLimiter = rateLimit({
     message: 'Too many requests, please try again later.',
 });
 
-// Pages live at clean URLs (/about, not /about.html or /about/). Send those variants
-// to the clean address. This must run before express.static, which would otherwise
-// serve /about.html directly. (htmlPages is defined below and only read per request.)
+// Pages live at clean URLs (/gallery, not /about.html or /gallery/). Send those
+// variants, and any legacyRedirects path, to the clean address. This must run
+// before express.static, which would otherwise serve /about.html directly.
+// (htmlPages and legacyRedirects are defined below and only read per request.)
 app.use((req, res, next) => {
     const pagePath = req.path.replace(/\/+$/, '') || '/';
+    if (legacyRedirects[pagePath]) {
+        const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
+        return res.redirect(301, legacyRedirects[pagePath] + query);
+    }
     const route = Object.keys(htmlPages).find(r => r === pagePath || '/' + htmlPages[r] === pagePath);
     if (!route || req.path === route) return next();
     const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
@@ -81,8 +86,14 @@ app.use(express.static(path.join(__dirname, 'public'), {
 const htmlPages = {
     '/': 'index.html',
     '/ramble': 'ramble.html',
-    '/about': 'about.html',
+    '/gallery': 'about.html', // the file is still named about.html; only the URL changed
     '/zine': 'zine.html'
+};
+
+// The Gallery page used to live at /about. Anyone with that old link, or a
+// search result pointing at it, gets sent to the new address instead of a 404.
+const legacyRedirects = {
+    '/about': '/gallery',
 };
 
 // Create routes for all HTML pages
