@@ -12,7 +12,19 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(helmet());
+// Helmet's default Content-Security-Policy only allows same-origin scripts/images/frames,
+// which would silently block the CDN-hosted Bootstrap/FullCalendar scripts, Discord event
+// images, and the RideWithGPS route map iframe that this site actually loads.
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            'script-src': ["'self'", 'https://cdn.jsdelivr.net'],
+            'img-src': ["'self'", 'data:', 'https://cdn.discordapp.com'],
+            'frame-src': ["'self'", 'https://ridewithgps.com'],
+        },
+    },
+}));
 app.disable('x-powered-by');
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'tiny'));
 app.use(compression()); // gzip HTML, CSS, JS and JSON (images are already compressed and are skipped)
