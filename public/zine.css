@@ -62,6 +62,7 @@ body{
   background-color: #224615; /* Match the page body (#zine-body) */
   color: #fff;
   font-family: 'Tenor Sans', sans-serif;
+  font-size: 20px; /* Match the rest of the site's text boxes */
   padding: 10px;
   max-width: 500px;
 

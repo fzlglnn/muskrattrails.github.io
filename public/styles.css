@@ -318,6 +318,13 @@
         margin-left: 0;
         padding-left: 3px !important;
     }
+
+    /* Bootstrap gives the hamburger button a faint border by default. Bootstrap's
+       own CSS loads after this file and ties on specificity for a bare
+       .navbar-toggler selector, so this needs to be more specific to win. */
+    .navbar .navbar-toggler {
+        border: none;
+    }
 }
 
 
