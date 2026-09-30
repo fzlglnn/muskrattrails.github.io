@@ -24,7 +24,7 @@ body{
 }
 
 .title-price-container{
-  background-color: #224615; /* Match the page body (#zine-body) */
+  background-color: var(--color-green); /* Match the page body (#zine-body) */
   box-sizing: border-box;
   max-width: 500px;
   position: center;
@@ -59,7 +59,7 @@ body{
 }
 .zine-details{
   margin: auto;
-  background-color: #224615; /* Match the page body (#zine-body) */
+  background-color: var(--color-green); /* Match the page body (#zine-body) */
   color: #fff;
   font-family: 'Tenor Sans', sans-serif;
   font-size: 20px; /* Match the rest of the site's text boxes */
@@ -83,6 +83,7 @@ body{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 3px solid black;
 }
 /* Number text (1/3 etc) */
 .numbertext {

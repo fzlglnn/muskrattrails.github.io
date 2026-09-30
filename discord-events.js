@@ -99,18 +99,18 @@ function escapeHtml(str) {
 
 const URL_RE = /\bhttps?:\/\/[^\s<>"']+/g;
 
-// Escapes an event's plain-text description and turns any URL in it into a
-// clickable link labeled with just its domain (e.g. "facebook.com") instead
-// of the full, often long, URL.
-function buildDescriptionHtml(description) {
-    if (!description) return '';
-    const matches = [...description.matchAll(URL_RE)];
-    if (!matches.length) return escapeHtml(description);
+// Escapes plain text (an event's description or location) and turns any URL
+// in it into a clickable link labeled with just its domain (e.g.
+// "facebook.com") instead of the full, often long, URL.
+function linkifyText(text) {
+    if (!text) return '';
+    const matches = [...text.matchAll(URL_RE)];
+    if (!matches.length) return escapeHtml(text);
 
     let html = '';
     let lastIndex = 0;
     matches.forEach((m) => {
-        html += escapeHtml(description.slice(lastIndex, m.index));
+        html += escapeHtml(text.slice(lastIndex, m.index));
         const url = m[0];
         let label = url;
         try {
@@ -121,7 +121,7 @@ function buildDescriptionHtml(description) {
         html += `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
         lastIndex = m.index + url.length;
     });
-    html += escapeHtml(description.slice(lastIndex));
+    html += escapeHtml(text.slice(lastIndex));
     return html;
 }
 
@@ -129,12 +129,14 @@ function buildDescriptionHtml(description) {
 // that fall within [rangeStart, rangeEnd).
 function expandOccurrences(event, rangeStart, rangeEnd) {
     const guildId = process.env.DISCORD_GUILD_ID || event.guild_id;
+    const location = buildLocation(event);
     const base = {
         seriesId: event.id,
         title: event.name,
         description: event.description || '',
-        descriptionHtml: buildDescriptionHtml(event.description),
-        location: buildLocation(event),
+        descriptionHtml: linkifyText(event.description),
+        location,
+        locationHtml: linkifyText(location),
         imageUrl: buildImageUrl(event),
         discordUrl: `https://discord.com/events/${guildId}/${event.id}`,
         userCount: typeof event.user_count === 'number' ? event.user_count : null,

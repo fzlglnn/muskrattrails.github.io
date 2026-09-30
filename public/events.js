@@ -89,7 +89,7 @@
         html += '<h3 class="event-card-title">' + escapeHtml(event.title) + '</h3>';
         html += '<p class="event-card-when">' + escapeHtml(formatWhen(event.start, event.end)) + '</p>';
         if (p.location) {
-            html += '<p class="event-card-location">📍 ' + escapeHtml(p.location) + '</p>';
+            html += '<p class="event-card-location">📍 ' + (p.locationHtml || escapeHtml(p.location)) + '</p>';
         }
         if (p.description) {
             html += '<p class="event-card-description">' + (p.descriptionHtml || escapeHtml(p.description)) + '</p>';
@@ -192,7 +192,7 @@
                             backgroundColor: color,
                             borderColor: color,
                             extendedProps: {
-                                seriesId: e.seriesId, description: e.description, descriptionHtml: e.descriptionHtml, location: e.location,
+                                seriesId: e.seriesId, description: e.description, descriptionHtml: e.descriptionHtml, location: e.location, locationHtml: e.locationHtml,
                                 imageUrl: e.imageUrl, discordUrl: e.discordUrl,
                                 userCount: e.userCount, isRecurring: e.isRecurring,
                             },

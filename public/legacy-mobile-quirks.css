@@ -1,0 +1,78 @@
+/* KNOWN BUG, KEPT INTENTIONALLY -- DO NOT "FIX" WITHOUT CHECKING WITH THE USER FIRST.
+ *
+ * A few lines down, the commented-out #ramble-main rule is malformed: CSS
+ * comments don't nest, so that comment actually ends the moment the parser
+ * hits its first comment-close marker (on the "gap: 20px" line), not where
+ * the writer intended. Live code resumes there, a second broken comment
+ * starts and ends the same way, and then a closing curly brace that was
+ * meant to belong to the commented-out rule closes this @media block
+ * instead -- far too early. The net effect: every rule below #main in this
+ * file (.navbar-brand, #nav-brand-logo, .navbar-toggler, the two
+ * .navbar-collapse rules, and the second .navbar-brand) actually applies at
+ * EVERY screen width, not just 500px and under, as the selector implies.
+ *
+ * This was found and explained to the site's owner, who asked to leave it as
+ * broken: the real fix (properly scoping these rules to mobile only) would
+ * shrink the desktop logo, which they didn't want. It's isolated in this
+ * separate file, verbatim, specifically so nobody edits it by accident while
+ * working on something else in styles.css -- do not reformat, move rules out
+ * of it, or "clean up" the comments below without raising it with the user
+ * first, since that would change its real (if broken) behavior.
+ */
+@media (max-width: 500px) {
+    #main{
+        flex-direction: column; /* Stack the map and text box vertically */
+        gap: 20px;
+    }
+
+    /*#ramble-main {
+        display: flex;
+        flex-direction: column; /* Stack the map and text box vertically
+        justify-content: center; /* Align items at the top
+        gap: 20px; /* Space between the map and text box */
+       /* padding: 20px;
+        padding-top: 90px;
+        max-width: auto;
+        margin: 0 auto; /* Center the content */
+    }
+
+    #home-text-box{
+        height: auto; /* Adjust the text box height based on content */
+        margin-bottom: 20px; /* Add spacing between stacked elements */
+    }
+
+    .navbar-brand {
+        flex-grow: 0; /* Let the logo grow to fill available space */
+        text-align: center; /* Center the logo if necessary */
+    }
+
+    #nav-brand-logo {
+        max-width: 250px; /* Smaller max width for small screens */
+        max-height: 40px; /* Smaller max height for small screens */
+       /*margin-left: 10px; /* Add some margin to space out from the burger menu */
+    }
+
+    /* Optional: Adjust burger icon spacing */
+    .navbar-toggler {
+        order: -1;
+        flex-grow: 0;
+        margin-left: -10px;
+    }
+
+    .navbar-collapse .nav-item {
+        display: inline-block; /* Prevent the nav-item from taking up the full width */
+        width: auto; /* Ensure it doesn't expand */
+    }
+
+    .navbar-collapse .nav-link {
+        display: inline-block; /* Make sure nav-link only takes necessary width */
+        padding: 5px 10px; /* Adjust padding to reduce clickable area */
+        width: auto; /* Prevent it from taking full width */
+    }
+    .navbar-brand{
+        order: 0;
+        flex-grow: 1;
+        display: inline-block;
+        padding: 5px 10px;
+        max-width: 70%;
+    }

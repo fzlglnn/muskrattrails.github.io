@@ -1,9 +1,18 @@
+/* Site-wide theme colors. Defined once here (loaded on every page) so a
+   sitewide recolor is a one-line change instead of hunting down the same
+   value across styles.css, zine.css and events.css. */
+:root {
+    --color-green: #224615; /* page body / text box background, every page */
+    --color-brown: rgb(181, 155, 124); /* nav bar, calendar buttons */
+    --color-brown-dark: rgb(161, 135, 104); /* hover/active shade of the brown above */
+}
+
 /* Header styles */
 #header {
     top: 0;
     left: 0;
     align-items: center;
-    background-color: rgba(181, 155, 124);  
+    background-color: var(--color-brown);
     text-align: center;
     position: fixed;
     width: 100%;
@@ -12,7 +21,7 @@
 #home-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #224615; /* The footer sits outside #main, which is the only
+    background-color: var(--color-green); /* The footer sits outside #main, which is the only
                                    other element carrying this green -- without this,
                                    the page falls back to the browser's default white
                                    behind the footer. */
@@ -23,7 +32,7 @@
 #ramble-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #224615;
+    background-color: var(--color-green);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -33,7 +42,7 @@
 #about-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #224615;
+    background-color: var(--color-green);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -42,7 +51,7 @@
 #zine-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #224615;
+    background-color: var(--color-green);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -62,7 +71,7 @@
 #main {
     display: flex;
     justify-content: center; /*space-between;*/
-    background-color: #224615;
+    background-color: var(--color-green);
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -113,7 +122,7 @@
     font-size: 20px; /* Adjust the font size */
     font-family: 'Tenor Sans', sans-serif;
     color: #fff;
-    background-color: #224615;
+    background-color: var(--color-green);
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     border-radius: 8px; /* Match the calendar's corners (#calendar in events.css) */
@@ -126,7 +135,7 @@
     font-size: 20px; /* Adjust the font size */
     font-family: 'Tenor Sans', sans-serif;
     color: #fff;
-    background-color: #224615; /* Match the home page text box (#home-text-box) */
+    background-color: var(--color-green); /* Match the home page text box (#home-text-box) */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     border-radius: 8px; /* Match the home page text box (#home-text-box) */
@@ -153,7 +162,7 @@
 
 /* Navigation link styles */
 .navbar {
-    background-color:  rgba(181, 155, 124); 
+    background-color:  var(--color-brown); 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -165,7 +174,7 @@
     /*width: auto;*/
     color: white !important;
     text-align: center;
-    background-color:  rgba(181, 155, 124);
+    background-color:  var(--color-brown);
     font-family: 'Tenor Sans', sans-serif;
     padding: 5px 5px !important;
     display: inline-block !important;
@@ -176,7 +185,7 @@
     text-align: center;   
 }
 .nav-link:hover {
-    background-color: rgba(161, 135, 104);
+    background-color: var(--color-brown-dark);
     border-radius: 15px;
     color: #fff;
 }
@@ -184,7 +193,7 @@
 .navbar-nav .nav-link.active {    
     text-align: center; 
     border-radius: 15px;
-    background-color: rgba(161, 135, 104, 1);
+    background-color: var(--color-brown-dark);
     display: inline-block;
     padding: 10px 15px;
 }
@@ -202,7 +211,7 @@
     font-family: 'Tenor Sans', sans-serif;
     color: #fff;
     text-align: left;
-    background-color: #224615; /* Match the page body (#about-body) */
+    background-color: var(--color-green); /* Match the page body (#about-body) */
     padding: 10px; /* Padding inside the text box */
     border: none;
     border-radius: 8px; /* Match the home page text box (#home-text-box) */
@@ -212,68 +221,11 @@
     max-width: 1000px;
 }
 
-/* Responsive: Stack columns on smaller screens */
-@media (max-width: 500px) {
-    #main{
-        flex-direction: column; /* Stack the map and text box vertically */
-        gap: 20px;
-    }
-
-    /*#ramble-main {
-        display: flex;
-        flex-direction: column; /* Stack the map and text box vertically 
-        justify-content: center; /* Align items at the top 
-        gap: 20px; /* Space between the map and text box */
-       /* padding: 20px;
-        padding-top: 90px;
-        max-width: auto;
-        margin: 0 auto; /* Center the content */
-    }
-
-    #home-text-box{
-        height: auto; /* Adjust the text box height based on content */
-        margin-bottom: 20px; /* Add spacing between stacked elements */
-    }
-
-    .navbar-brand {
-        flex-grow: 0; /* Let the logo grow to fill available space */
-        text-align: center; /* Center the logo if necessary */
-    }
-
-    #nav-brand-logo {
-        max-width: 250px; /* Smaller max width for small screens */
-        max-height: 40px; /* Smaller max height for small screens */
-       /*margin-left: 10px; /* Add some margin to space out from the burger menu */
-    }
-
-    /* Optional: Adjust burger icon spacing */
-    .navbar-toggler {
-        order: -1;
-        flex-grow: 0;
-        margin-left: -10px;
-    }
-
-    .navbar-collapse .nav-item {
-        display: inline-block; /* Prevent the nav-item from taking up the full width */
-        width: auto; /* Ensure it doesn't expand */
-    }
-
-    .navbar-collapse .nav-link {
-        display: inline-block; /* Make sure nav-link only takes necessary width */
-        padding: 5px 10px; /* Adjust padding to reduce clickable area */
-        width: auto; /* Prevent it from taking full width */
-    }
-    .navbar-brand{
-        order: 0;
-        flex-grow: 1;
-        display: inline-block; 
-        padding: 5px 10px;
-        max-width: 70%; 
-    }
-
-
-
-
+/* The @media (max-width: 500px) block that used to live here -- a set of
+   mobile-only logo/navbar tweaks with a known, intentionally-preserved
+   comment bug -- has moved to legacy-mobile-quirks.css (loaded on every page
+   alongside this file), so it's isolated somewhere it won't get disturbed by
+   an unrelated edit here. See that file for the full explanation. */
 /* ---- Mobile and tablet refinements ---- */
 
 /* On phones, the 20px side padding on #main/#ramble-main (sized for desktop,
