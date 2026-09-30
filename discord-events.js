@@ -91,6 +91,40 @@ function buildLocation(event) {
     return null; // voice/stage events: no separate location string, just the Discord link
 }
 
+function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[c]));
+}
+
+const URL_RE = /\bhttps?:\/\/[^\s<>"']+/g;
+
+// Escapes an event's plain-text description and turns any URL in it into a
+// clickable link labeled with just its domain (e.g. "facebook.com") instead
+// of the full, often long, URL.
+function buildDescriptionHtml(description) {
+    if (!description) return '';
+    const matches = [...description.matchAll(URL_RE)];
+    if (!matches.length) return escapeHtml(description);
+
+    let html = '';
+    let lastIndex = 0;
+    matches.forEach((m) => {
+        html += escapeHtml(description.slice(lastIndex, m.index));
+        const url = m[0];
+        let label = url;
+        try {
+            label = new URL(url).hostname.replace(/^www\./, '');
+        } catch {
+            // Malformed URL text; fall back to showing it verbatim.
+        }
+        html += `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+        lastIndex = m.index + url.length;
+    });
+    html += escapeHtml(description.slice(lastIndex));
+    return html;
+}
+
 // Turns one Discord scheduled-event object into zero or more calendar occurrences
 // that fall within [rangeStart, rangeEnd).
 function expandOccurrences(event, rangeStart, rangeEnd) {
@@ -99,6 +133,7 @@ function expandOccurrences(event, rangeStart, rangeEnd) {
         seriesId: event.id,
         title: event.name,
         description: event.description || '',
+        descriptionHtml: buildDescriptionHtml(event.description),
         location: buildLocation(event),
         imageUrl: buildImageUrl(event),
         discordUrl: `https://discord.com/events/${guildId}/${event.id}`,

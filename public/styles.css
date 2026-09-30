@@ -177,7 +177,8 @@
 }
 .nav-link:hover {
     background-color: rgba(161, 135, 104);
-    color: #fff; 
+    border-radius: 15px;
+    color: #fff;
 }
 
 .navbar-nav .nav-link.active {    
@@ -315,8 +316,10 @@
         text-align: left;
     }
     .navbar-collapse .nav-link {
-        margin-left: 0;
-        padding-left: 3px !important;
+        /* Shifting the whole link left (rather than trimming just its left
+           padding) keeps the padding symmetric, so the hover/tap highlight
+           pill stays centered on the text instead of looking off-balance. */
+        margin-left: -13px;
     }
 
     /* Bootstrap gives the hamburger button a faint border by default. Bootstrap's

@@ -36,20 +36,23 @@
 }
 
 .fc .fc-button-primary {
-    background-color: rgba(181, 155, 124, 1);
-    border-color: rgba(181, 155, 124, 1);
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
     box-shadow: none;
 }
 
 .fc .fc-button-primary:hover,
 .fc .fc-button-primary:focus-visible {
-    background-color: rgba(161, 135, 104, 1);
-    border-color: rgba(161, 135, 104, 1);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+    color: #fff;
 }
 
 .fc .fc-button-primary:disabled {
-    background-color: rgba(181, 155, 124, 0.5);
-    border-color: rgba(181, 155, 124, 0.5);
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .fc .fc-today-button {

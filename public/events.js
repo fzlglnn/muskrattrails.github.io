@@ -92,7 +92,7 @@
             html += '<p class="event-card-location">📍 ' + escapeHtml(p.location) + '</p>';
         }
         if (p.description) {
-            html += '<p class="event-card-description">' + escapeHtml(p.description) + '</p>';
+            html += '<p class="event-card-description">' + (p.descriptionHtml || escapeHtml(p.description)) + '</p>';
         }
         if (typeof p.userCount === 'number') {
             html += '<p class="event-card-count">' + p.userCount + (p.userCount === 1 ? ' person interested' : ' people interested') + '</p>';
@@ -192,7 +192,7 @@
                             backgroundColor: color,
                             borderColor: color,
                             extendedProps: {
-                                seriesId: e.seriesId, description: e.description, location: e.location,
+                                seriesId: e.seriesId, description: e.description, descriptionHtml: e.descriptionHtml, location: e.location,
                                 imageUrl: e.imageUrl, discordUrl: e.discordUrl,
                                 userCount: e.userCount, isRecurring: e.isRecurring,
                             },
