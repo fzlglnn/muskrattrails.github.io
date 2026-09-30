@@ -49,9 +49,9 @@ async function fetchRawEvents() {
     return raw;
 }
 
-// Discord's numbering (0=Sunday..6=Saturday, matching most calendar-day-of-week
-// conventions) mapped to the RRule weekday constants it expects.
-const WEEKDAY_BY_DISCORD_INDEX = [RRule.SU, RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR, RRule.SA];
+// Discord's numbering (0=Monday..6=Sunday, ISO-8601 order -- NOT the 0=Sunday
+// convention JS Date.getDay() uses) mapped to the RRule weekday constants it expects.
+const WEEKDAY_BY_DISCORD_INDEX = [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR, RRule.SA, RRule.SU];
 const FREQUENCY_BY_DISCORD_CODE = [RRule.YEARLY, RRule.MONTHLY, RRule.WEEKLY, RRule.DAILY];
 
 // Converts a Discord `recurrence_rule` object into RRule constructor options.

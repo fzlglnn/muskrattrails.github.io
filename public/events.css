@@ -4,7 +4,7 @@
 #events-error {
     text-align: center;
     font-size: 16px;
-    color: #333;
+    color: #fff;
 }
 
 /* --- FullCalendar, restyled to match the site's palette --- */
@@ -12,7 +12,7 @@
 #calendar {
     width: 100%;
     max-width: 900px;
-    background-color: beige;
+    background-color: #224615;
     border-radius: 8px;
     padding: 12px;
     box-sizing: border-box;
@@ -23,12 +23,16 @@
 }
 
 .fc {
-    font-family: Arial, sans-serif;
+    font-family: 'Tenor Sans', sans-serif;
+    color: #fff;
+    /* FullCalendar paints its sticky weekday-header row with this variable
+       (defaults to white) to stay opaque over content scrolling beneath it. */
+    --fc-page-bg-color: #224615;
 }
 
 .fc .fc-toolbar-title {
     font-size: 2rem;
-    font-family: 'Alfa Slab One', serif; /* matches the MUSKRAT wordmark in the logo */
+    font-family: 'Tenor Sans', sans-serif;
 }
 
 .fc .fc-button-primary {
@@ -57,11 +61,11 @@
 }
 
 .fc .fc-daygrid-day-number {
-    color: #333;
+    color: #fff;
 }
 
 .fc .fc-col-header-cell-cushion {
-    color: #333;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -113,7 +117,7 @@
 .event-bar-label {
     display: block;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'Tenor Sans', sans-serif;
     font-size: 0.68rem;
     line-height: inherit; /* matches .fc-event's line-height, for vertical centering */
     white-space: nowrap;
@@ -173,7 +177,7 @@
 }
 
 #event-dialog-heading {
-    font-family: 'Lora', serif;
+    font-family: 'Tenor Sans', sans-serif;
     font-size: 1.3rem;
     margin: 0 0 12px;
     padding-right: 28px; /* keep clear of the close button */
@@ -204,7 +208,7 @@
 }
 
 .event-card-title {
-    font-family: 'Lora', serif;
+    font-family: 'Tenor Sans', sans-serif;
     font-size: 1.15rem;
     margin: 0 0 4px;
 }

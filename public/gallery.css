@@ -27,7 +27,7 @@
 
 .gallery-tile {
     display: block;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 9 / 16; /* matches a vertical phone screen */
     overflow: hidden;
     border-radius: 6px;
     background-color: beige; /* shows while a thumbnail is loading */

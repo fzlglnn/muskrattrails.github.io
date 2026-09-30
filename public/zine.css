@@ -16,7 +16,7 @@ body{
 }
 
 .title-price-container{
-  background-color: beige;
+  background-color: #224615; /* Match the page body (#zine-body) */
   box-sizing: border-box;
   max-width: 500px;
   position: center;
@@ -35,24 +35,45 @@ body{
 /* Slideshow container */
 .slideshow-container {
   max-width: 500px;
+  aspect-ratio: 3 / 4; /* matches the photos' natural (portrait) ratio */
   position: relative;
-  margin: auto;  
-}
-.zine-details{  
+  overflow: hidden;
+  border-radius: 8px;
   margin: auto;
-  background-color: beige;  
+}
+
+/* Holds all slides side by side; sliding to the next/previous photo just
+   translates this track instead of fading slides in and out. */
+.slides-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+.zine-details{
+  margin: auto;
+  background-color: #224615; /* Match the page body (#zine-body) */
+  color: #fff;
+  font-family: 'Tenor Sans', sans-serif;
   padding: 10px;
-  max-width: 500px;   
-  
+  max-width: 500px;
+
 }
 .zine-description{
   margin:auto;
   max-width: 500px;
 }
 
-/* Hide the images by default */
 .mySlides {
-  display: none;
+  flex: 0 0 100%;
+  position: relative; /* keeps .numbertext anchored to this slide, not the track */
+  height: 100%;
+}
+
+.mySlides img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 /* Number text (1/3 etc) */
 .numbertext {
@@ -79,17 +100,6 @@ body{
   background-color: #717171;
 }
 
-/* Fading animation */
-.fades {
-  animation-name: fade;
-  animation-duration: 2.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
 /* Bigger tap targets on touch screens and small screens. The dot stays small
    visually; an invisible pseudo-element extends the area that responds to taps. */
 @media (max-width: 991.98px), (pointer: coarse) {
@@ -106,5 +116,11 @@ body{
   }
   .numbertext {
     font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slides-track {
+    transition: none;
   }
 }

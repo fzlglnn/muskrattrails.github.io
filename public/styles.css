@@ -12,7 +12,7 @@
 #home-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #add19e; /* The footer sits outside #main, which is the only
+    background-color: #224615; /* The footer sits outside #main, which is the only
                                    other element carrying this green -- without this,
                                    the page falls back to the browser's default white
                                    behind the footer. */
@@ -23,7 +23,7 @@
 #ramble-body{
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #add19e;
+    background-color: #224615;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -31,18 +31,18 @@
 
 }
 #about-body{
-    margin: 0;    
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #add19e; /* Replace with your desired color code */
+    background-color: #224615;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: 50px;
 }
 #zine-body{
-    margin: 0;    
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: beige; /* Replace with your desired color code */
+    background-color: #224615;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -51,7 +51,7 @@
 }
 /* Zine title*/
 .hollow-text {
-    -webkit-text-stroke: 1px black;
+    -webkit-text-stroke: 1px white;
     -webkit-text-fill-color: transparent;
 }
 
@@ -65,10 +65,10 @@
 }
 
 /* Main content area */
-#main {    
+#main {
     display: flex;
     justify-content: center; /*space-between;*/
-    background-color: #add19e; 
+    background-color: #224615;
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -117,8 +117,9 @@
 /* Home text box */
 #home-text-box {
     font-size: 20px; /* Adjust the font size */
-    color: rgb(0, 0, 0);
-    background-color: beige; /* Set the background to white */
+    font-family: 'Tenor Sans', sans-serif;
+    color: #fff;
+    background-color: #224615;
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     border-radius: 8px; /* Match the calendar's corners (#calendar in events.css) */
@@ -127,10 +128,11 @@
     max-width: 900px; /* Match the calendar's width (#calendar in events.css) */
     box-sizing: border-box;
 }
-#ramble-text-box {   
-    font-size: 20px; /* Adjust the font size */   
-    color: rgb(0, 0, 0);    
-    background-color: beige; /* Set the background to white */
+#ramble-text-box {
+    font-size: 20px; /* Adjust the font size */
+    font-family: 'Tenor Sans', sans-serif;
+    color: #fff;
+    background-color: #224615; /* Match the home page text box (#home-text-box) */
     padding: 10px; /* Padding inside the text box */
     border: none; /* Remove the border */
     border-radius: 8px; /* Match the home page text box (#home-text-box) */
@@ -139,14 +141,6 @@
     overflow: visible;
 }
 
-#ramble-map-section{
-    flex: 1; /* Allow the map section to take up the space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;  
-    margin:auto;
-}
 #flyer-section00{
     flex: 1; /* Allow the map section to take up the space */
     display: flex;
@@ -158,12 +152,6 @@
 
 #packinglist-flyer img{
    width: 100%; /* Ensure the image fills the width of the container */
-    height: 100%; /* Ensure the image fills the height of the container */
-    object-fit: contain; /* Make sure the image covers the container without distorting */
-    padding-bottom: 20px;
-}
-#ramble-flyer img {
-    width: 100%; /* Ensure the image fills the width of the container */
     height: 100%; /* Ensure the image fills the height of the container */
     object-fit: contain; /* Make sure the image covers the container without distorting */
     padding-bottom: 20px;
@@ -184,8 +172,8 @@
     color: white !important;
     text-align: center;
     background-color:  rgba(181, 155, 124);
-    font-family: 'Lora', serif;  
-    padding: 5px 5px !important;    
+    font-family: 'Tenor Sans', sans-serif;
+    padding: 5px 5px !important;
     display: inline-block !important;
     transition: background-color 0.3s ease, padding 0.3s ease;    
 }
@@ -214,11 +202,12 @@
     overflow: visible;    
 }
 
-#about-blerb{    
-    font-size: 20px; /* Adjust the font size */   
-    color: rgb(0, 0, 0);    
+#about-blerb{
+    font-size: 20px; /* Adjust the font size */
+    font-family: 'Tenor Sans', sans-serif;
+    color: #fff;
     text-align: left;
-    background-color: beige;
+    background-color: #224615; /* Match the page body (#about-body) */
     padding: 10px; /* Padding inside the text box */
     border: none;
     border-radius: 8px; /* Match the home page text box (#home-text-box) */
@@ -309,6 +298,20 @@
     .navbar-collapse .nav-link {
         padding: 12px 16px !important;
     }
+
+    /* .nav-item has its own text-align: center (for the desktop layout), which
+       centers each dropdown row's link. Left-align them so they line up with
+       the hamburger icon instead. */
+    .navbar-collapse {
+        text-align: left;
+    }
+    .navbar-collapse .nav-item {
+        text-align: left;
+    }
+    .navbar-collapse .nav-link {
+        margin-left: 0;
+        padding-left: 3px !important;
+    }
 }
 
 
@@ -371,11 +374,4 @@
 .footer-badge:hover,
 .footer-badge:focus-visible {
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* On the zine page only, the badges are brown (matching the nav bar) instead of
-   white -- #zine-body is unique to this page, unlike zine.css which ramble.html
-   also loads, so this doesn't affect Ramble's footer. */
-#zine-body .footer-badge {
-    color: rgba(181, 155, 124, 1);
 }
