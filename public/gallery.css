@@ -29,7 +29,7 @@
     display: block;
     aspect-ratio: 9 / 16; /* matches a vertical phone screen */
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 50% / 40px; /* arched top and bottom */
     background-color: beige; /* shows while a thumbnail is loading */
 }
 
