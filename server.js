@@ -14,14 +14,16 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 // Helmet's default Content-Security-Policy only allows same-origin scripts/images/frames,
 // which would silently block the CDN-hosted Bootstrap/FullCalendar scripts, Discord event
-// images, and the RideWithGPS route map iframe that this site actually loads.
+// images, the RideWithGPS route map iframe, and Google Analytics' script + tracking
+// beacons that this site actually loads.
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-            'script-src': ["'self'", 'https://cdn.jsdelivr.net'],
+            'script-src': ["'self'", 'https://cdn.jsdelivr.net', 'https://www.googletagmanager.com'],
             'img-src': ["'self'", 'data:', 'https://cdn.discordapp.com'],
             'frame-src': ["'self'", 'https://ridewithgps.com'],
+            'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com'],
         },
     },
 }));
