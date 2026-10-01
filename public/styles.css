@@ -3,7 +3,7 @@
    value across styles.css, zine.css and events.css. */
 :root {
     --color-green: #224615; /* page body / text box background, every page */
-    --color-brown: rgb(181, 155, 124); /* nav bar, calendar buttons */
+    --color-brown: #c9a876; /* nav bar, calendar buttons */
     --color-brown-dark: rgb(161, 135, 104); /* hover/active shade of the brown above */
 }
 
