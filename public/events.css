@@ -22,18 +22,6 @@
     overscroll-behavior: none;
 }
 
-/* On phones, break the calendar out of #main's side padding so it spans the
-   full screen width edge-to-edge, instead of sitting in the same padded
-   column as the rest of the page's content. */
-@media (max-width: 600px) {
-    #calendar {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        border-radius: 0;
-    }
-}
-
 .fc {
     font-family: 'Tenor Sans', sans-serif;
     color: #fff;
