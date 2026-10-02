@@ -29,15 +29,24 @@
     // Fixed, validated categorical palette (dataviz skill reference palette, default
     // order). Never reordered or cycled per the skill's rule; a 9th distinct series
     // just repeats a slot rather than inventing a new hue.
+    // Earth-toned variant of the dataviz skill's default categorical theme: same
+    // hue-family order (so the CVD-safety math carries over), re-stepped to a
+    // muted, warm rendition of each hue and validated against this calendar's
+    // actual surface (node scripts/validate_palette.js "<hexes>" --mode dark
+    // --surface "#224615" from the dataviz skill's base directory) -- all hard
+    // checks pass; CVD separation and contrast both land in their WARN/floor
+    // bands, legal because every bar already ships a visible text label
+    // (.event-bar-label) and the detail card on click, satisfying the relief
+    // rule rather than relying on color alone.
     var SERIES_COLORS = [
-        '#2a78d6', // blue
-        '#eb6834', // orange
-        '#1baf7a', // aqua
-        '#eda100', // yellow
-        '#e87ba4', // magenta
-        '#008300', // green
-        '#4a3aa7', // violet
-        '#e34948', // red
+        '#2e6a9e', // slate blue (was blue)
+        '#c1662e', // terracotta (was orange)
+        '#1a9b82', // patina teal (was aqua)
+        '#a6860c', // ochre (was yellow)
+        '#b5657a', // dusty rose (was magenta)
+        '#7a8f3e', // olive (was green)
+        '#7a5296', // muted plum (was violet)
+        '#a14b3c', // brick (was red)
     ];
 
     // Deterministic hash so the same Discord event series always lands on the same
