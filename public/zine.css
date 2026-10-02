@@ -60,6 +60,9 @@ body{
 .zine-cover {
   max-width: 500px;
   margin: 20px auto;
+  padding: 0 10px; /* matches .zine-details' padding, so the image has the
+                       same side margin as the text instead of touching the
+                       screen edges on narrow viewports */
 }
 
 .zine-cover img {
