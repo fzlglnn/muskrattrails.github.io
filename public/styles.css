@@ -112,9 +112,25 @@
     width: 100%; /* Ensure the text box takes the full width of the container */
     display: flex;
     justify-content: center;
-    align-items: center;    
-    flex-direction: column;    
+    align-items: center;
+    flex-direction: column;
     margin: 0 auto;
+}
+
+#flyer-section00{
+    flex: 1; /* Allow the map section to take up the space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:auto;
+}
+
+#packinglist-flyer img{
+   width: 100%; /* Ensure the image fills the width of the container */
+    height: 100%; /* Ensure the image fills the height of the container */
+    object-fit: contain; /* Make sure the image covers the container without distorting */
+    padding-bottom: 20px;
 }
 
 /* Home text box */
