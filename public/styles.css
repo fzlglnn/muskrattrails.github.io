@@ -147,6 +147,16 @@
     max-width: 900px; /* Match the calendar's width (#calendar in events.css) */
     box-sizing: border-box;
 }
+
+/* Plain text links on the home and ramble pages (not the nav, buttons, or the
+   calendar's own day-number links). */
+#home-text-box a,
+#events-empty a,
+#events-error a,
+#ramble-text-box a {
+    color: #6fb3f0; /* clear sky blue -- 4.8:1 contrast on the page's dark green, vs 1.1:1 for the browser's stock link blue */
+}
+
 #ramble-text-box {
     font-size: 20px; /* Adjust the font size */
     font-family: 'Tenor Sans', sans-serif;
